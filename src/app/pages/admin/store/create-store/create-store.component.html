@@ -1,0 +1,90 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="btn-close btn-danger text-white" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form method="post" [formGroup]="angForm" novalidate (submit)="submitForm()">
+    <div class="modal-body">
+        <!-- <p>Hello, {{ name }}!</p> -->
+        <div class="row">
+
+            <div class="col-md-6 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Name
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="name" formControlName="name"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.name.errors}" id="name">
+                    <div *ngIf="isFormSubmitted && form.name.errors?.required" class="invalid-feedback">
+                        Name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6  mb-3 form-group">
+                <label for="number" class="col-form-label">
+                    Number
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="number" formControlName="number"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.number.errors}" id="number">
+                    <div *ngIf="isFormSubmitted && form.number.errors?.required" class="invalid-feedback">
+                        Number is required.
+                    </div>
+                    <div *ngIf="isFormSubmitted && form.number.errors?.pattern" class="invalid-feedback">
+                        Please enter valid number.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3 form-group">
+                <label for="city" class="col-form-label">
+                    City
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="city" formControlName="city"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.city.errors}" id="city">
+                    <div *ngIf="isFormSubmitted && form.city.errors?.required" class="invalid-feedback">
+                        City is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3 form-group">
+                <label for="pincode" class="col-form-label">
+                    Pincode
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="pincode" formControlName="pincode"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.pincode.errors}" id="pincode">
+                    <div *ngIf="isFormSubmitted && form.pincode.errors?.required" class="invalid-feedback">
+                        Pincode is required.
+                    </div>
+                    <div *ngIf="isFormSubmitted && form.pincode.errors?.pattern" class="invalid-feedback">
+                        Please enter valid pincode.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 b-3 form-group">
+                <label for="address" class="col-form-label">
+                    Address
+                </label>
+                <div>
+                    <textarea type="text" class="form-control" name="address" formControlName="address"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.address.errors}" id="address"></textarea>
+                    <div *ngIf="isFormSubmitted && form.address.errors?.required" class="invalid-feedback">
+                        Address is required.
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">{{buttonText}}</button>
+        <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+</form>
