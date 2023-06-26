@@ -28,7 +28,8 @@
                 <div>
                     <select class="form-control" name="city" formControlName="city"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.city.errors}" id="pincode">
-                        <option></option>
+                        <option value="">--Select City--</option>
+                        <option *ngFor="let city of cities" [value]="city._id">{{city.name}}</option>
                     </select>
                     <!-- <input type="text" class="form-control" name="pincode" formControlName="pincode"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.pincode.errors}" id="pincode"> -->

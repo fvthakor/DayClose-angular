@@ -32,7 +32,7 @@
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({pincode: '', category: ''})">Crate Pincode</button>
+            <button class="btn btn-primary btn-sm" (click)="open({pincode: '', city: ''})">Crate Pincode</button>
         </div>
     </div>
     <!-- end::Header -->
@@ -63,7 +63,7 @@
 
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{pincode.city}}
+                                {{getCityName(pincode)}}
                             </span>
                         </td>
 

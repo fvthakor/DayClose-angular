@@ -28,6 +28,14 @@ export class CityService {
     return this.http.get<CityPagination>(`${environment.apiUrl}/${this.route}?page=${page}&limit=${limit}&query=${query}`, { withCredentials: true })
   }
 
+  getAllData(): Observable<City[]> {
+    return this.http.get<{ data: City[] }>(`${environment.apiUrl}/${this.route}/all`, {
+      withCredentials: true
+    }).pipe(map(response => {
+      return response.data;
+    }));
+  }
+
   getOne(id: string): Observable<City> {
     return this.http.get<{ data: City }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }

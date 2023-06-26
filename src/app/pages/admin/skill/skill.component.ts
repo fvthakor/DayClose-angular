@@ -26,6 +26,7 @@ export class SkillComponent implements OnInit {
   totalPageSize = 0
   query = ''
   ngOnInit(): void {
+    this.getPage(1);
   }
 
   open(skill: Skill) {

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Pincode } from 'src/app/models';
-import { PincodeService } from 'src/app/services';
+import { Pincode, City } from 'src/app/models';
+import { CityService, PincodeService } from 'src/app/services';
 
 @Component({
   selector: 'app-create-pincode',
@@ -16,15 +16,17 @@ export class CreatePincodeComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private pincodeService: PincodeService
+    private pincodeService: PincodeService,
+    private cityService: CityService
   ) {
     this.createForm();
   }
 
   isFormSubmitted = false;
   ngOnInit(): void {
-    this.angForm.patchValue(this.pincode);
-    this.title = this.pincode._id ? 'Edit City' : 'Create City';
+    this.angForm.patchValue({ ...this.pincode, city: typeof this.pincode.city === 'string' ? this.pincode.city : this.pincode.city._id });
+    this.getCity();
+    this.title = this.pincode._id ? 'Edit Pincode' : 'Create Pincode';
     this.buttonText = this.pincode._id ? 'Update' : 'Create';
   }
 
@@ -34,6 +36,12 @@ export class CreatePincodeComponent implements OnInit {
       pincode: ['', [Validators.required]],
       city: ['', [Validators.required]],
     });
+  }
+  cities: City[] = []
+  getCity() {
+    this.cityService.getAllData().subscribe(response => {
+      this.cities = response;
+    })
   }
 
   submitForm() {

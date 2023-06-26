@@ -27,6 +27,7 @@ export class CityComponent implements OnInit {
   query = ''
 
   ngOnInit(): void {
+    this.getPage(1);
   }
 
   open(city: City) {

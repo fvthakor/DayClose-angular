@@ -28,15 +28,6 @@ export class PincodeService {
   }
 
 
-  getAllData(data: Pincode): Observable<Pincode[]> {
-    return this.http.post<{ data: Pincode[] }>(`${environment.apiUrl}/${this.route}/all`, data, {
-      withCredentials: true
-    }).pipe(map(response => {
-      return response.data;
-    }));
-  }
-
-
   getOne(id: string): Observable<Pincode> {
     return this.http.get<{ data: Pincode }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }

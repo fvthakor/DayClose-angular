@@ -26,6 +26,7 @@ export class PincodeComponent implements OnInit {
   query = ''
 
   ngOnInit(): void {
+    this.getPage(1);
   }
 
   open(pincode: Pincode) {
@@ -55,6 +56,10 @@ export class PincodeComponent implements OnInit {
       this.totalPageSize = totalPages * 10;
       this.changeDetectorRef.detectChanges();
     })
+  }
+
+  getCityName(pincode: Pincode) {
+    return typeof pincode.city !== 'string' ? pincode.city.name : pincode.city;
   }
 
   delete(id: string) {
