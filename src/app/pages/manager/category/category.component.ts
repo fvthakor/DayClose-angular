@@ -33,8 +33,6 @@ export class CategoryComponent implements OnInit {
     category = typeof category.mainCategory == 'string' ? category : { ...category, mainCategory: category.mainCategory?._id }
     const modelRef = this.modalService.open(CreateCategoryComponent);
     modelRef.componentInstance.category = category;
-    console.log('mahesh');
-    console.log(category);
     modelRef.result.then(
       (result) => {
         if (result === 'form submit') {
@@ -43,7 +41,6 @@ export class CategoryComponent implements OnInit {
       },
       (reason) => {
         if (reason === 'form submit') {
-          console.log('mamata');
           this.getPage(1);
         }
       }
@@ -79,6 +76,4 @@ export class CategoryComponent implements OnInit {
       }
     })
   }
-
-
 }
