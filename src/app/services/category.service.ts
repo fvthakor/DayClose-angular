@@ -46,4 +46,11 @@ export class CategoryService {
   delete(id: string): Observable<Category> {
     return this.http.delete<{ data: Category }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }
+  getParentCategory(): Observable<Category[]> {
+    return this.http.get<{ data: Category[] }>(`${environment.apiUrl}/${this.route}/parent`, {
+      withCredentials: true
+    }).pipe(map(response => {
+      return response.data;
+    }));
+  }
 }

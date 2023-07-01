@@ -30,6 +30,7 @@ export class CategoryComponent implements OnInit {
   }
 
   open(category: Category) {
+    category = typeof category.mainCategory == 'string' ? category : { ...category, mainCategory: category.mainCategory?._id }
     const modelRef = this.modalService.open(CreateCategoryComponent);
     modelRef.componentInstance.category = category;
     modelRef.result.then(
@@ -57,7 +58,10 @@ export class CategoryComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
     })
   }
+  getCategoryName(category: Category) {
+    return category.mainCategory && typeof category.mainCategory !== 'string' ? category.mainCategory.category : category.mainCategory;
 
+  }
   delete(id: string) {
     const alertData = {
       message: 'You won\'t be able to revert this!',
@@ -72,5 +76,4 @@ export class CategoryComponent implements OnInit {
       }
     })
   }
-
 }
