@@ -27,6 +27,10 @@ export class DocumentService {
     return this.http.get<DocumentTypePagination>(`${environment.apiUrl}/document-type?page=${page}&limit=${limit}&query=${query}`, { withCredentials: true })
   }
 
+  getAllData(): Observable<DocumentType[]> {
+    return this.http.get<{ data: DocumentType[] }>(`${environment.apiUrl}/document-type/all`, { withCredentials: true }).pipe((map(response => response.data)))
+  }
+
   getOne(id: string): Observable<DocumentType> {
     return this.http.get<{ data: DocumentType }>(`${environment.apiUrl}/document-type/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }

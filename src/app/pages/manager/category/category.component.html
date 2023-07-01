@@ -15,7 +15,7 @@
         <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Skill</li>
+                <li class="breadcrumb-item active" aria-current="page">Category</li>
             </ol>
         </div>
 
@@ -28,11 +28,12 @@
     <!-- begin::Header -->
     <div class="card-header border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder fs-3 mb-1">Skill</span>
+            <span class="card-label fw-bolder fs-3 mb-1">Category</span>
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({name: ''})">Crate Skill</button>
+            <button class="btn btn-primary btn-sm" (click)="open({category: '', mainCategory: ''})">Crate
+                Category</button>
         </div>
     </div>
     <!-- end::Header -->
@@ -45,7 +46,8 @@
                 <!-- begin::Table head -->
                 <thead>
                     <tr class="fw-bolder text-muted">
-                        <th class="min-w-150px">Skill</th>
+                        <th class="min-w-150px">Category</th>
+                        <th class="min-w-150px">Main Category</th>
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
                 </thead>
@@ -53,19 +55,24 @@
                 <!-- begin::Table body -->
                 <tbody>
                     <tr
-                        *ngFor="let document of documents | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
+                        *ngFor="let category of categories | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{document.name}}
+                                {{category.category}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                {{category.mainCategory}}
                             </span>
                         </td>
 
                         <td class="text-end">
-                            <button (click)="open(document)" class="btn btn-icon btn-light-primary btn-sm me-1">
+                            <button (click)="open(category)" class="btn btn-icon btn-light-primary btn-sm me-1">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
                                     class="svg-icon svg-icon-3"></span>
                             </button>
-                            <button (click)="delete(document._id ? document._id : '')"
+                            <button (click)="delete(category._id ? category._id : '')"
                                 class="btn btn-icon btn-light-danger btn-sm">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
                                     class="svg-icon svg-danger svg-icon-3"></span>

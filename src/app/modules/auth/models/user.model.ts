@@ -10,6 +10,24 @@ export class UserModel extends AuthModel {
   pic: string;
   role: string;
   roles: number[] = [];
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  userName: string;
+  phoneNumber: string;
+
+  address: string;
+  city: string;
+  pincode: string;
+  documentType: string;
+  documentNumber: string;
+  documentFront: string;
+  documentBack: string;
+  skill: string;
+  store: string;
+  remark1: string;
+  remark2: string;
+  employeePhoto: string;
 
   setUser(_user: unknown) {
     const user = _user as UserModel;

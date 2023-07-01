@@ -92,9 +92,9 @@ export class AuthService implements OnDestroy {
   }
 
   // need create new user then login
-  registration(user: UserModel): Observable<any> {
+  registration(formData: FormData, user: UserModel): Observable<any> {
     this.isLoadingSubject.next(true);
-    return this.authHttpService.createUser(user).pipe(
+    return this.authHttpService.createUser(formData).pipe(
       map(() => {
         this.isLoadingSubject.next(false);
       }),

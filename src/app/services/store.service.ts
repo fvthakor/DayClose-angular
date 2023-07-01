@@ -26,6 +26,10 @@ export class StoreService {
     return this.http.get<StorePagination>(`${environment.apiUrl}/store?page=${page}&limit=${limit}&query=${query}`, { withCredentials: true })
   }
 
+  getAllData(): Observable<Store[]> {
+    return this.http.get<{ data: Store[] }>(`${environment.apiUrl}/store/all`, { withCredentials: true }).pipe((map(response => response.data)))
+  }
+
   getOne(id: string): Observable<Store> {
     return this.http.get<{ data: Store }>(`${environment.apiUrl}/store/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }

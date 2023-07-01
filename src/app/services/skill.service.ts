@@ -27,6 +27,10 @@ export class SkillService {
     return this.http.get<SkillPagination>(`${environment.apiUrl}/${this.route}?page=${page}&limit=${limit}&query=${query}`, { withCredentials: true })
   }
 
+  getAllData(): Observable<Skill[]> {
+    return this.http.get<{ data: Skill[] }>(`${environment.apiUrl}/${this.route}/all`, { withCredentials: true }).pipe((map(response => response.data)))
+  }
+
   getOne(id: string): Observable<Skill> {
     return this.http.get<{ data: Skill }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }

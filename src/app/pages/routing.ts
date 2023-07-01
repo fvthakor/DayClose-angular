@@ -27,6 +27,12 @@ const Routing: Routes = [
     path: 'pincode',
     loadChildren: () => import('./admin/pincode/pincode.module').then((m) => m.PincodeModule)
   },
+
+  {
+    path: 'category',
+    loadChildren: () => import('./manager/category/category.module').then((m) => m.CategoryModule)
+  },
+
   // route of project path
 
 
