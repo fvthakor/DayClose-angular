@@ -20,6 +20,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Parent Category
+                </label>
+                <div>
+                    <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
+                    <select class="form-control" id="" name="mainCategory" formControlName="mainCategory">
+                        <option value="">Select Category</option>
+                        <option *ngFor="let category of categories"   value="{{category._id}}" selected>{{category.category}}</option>
+                    </select>
+                </div>
+            </div>
 
         </div>
 

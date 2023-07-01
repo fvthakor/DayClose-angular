@@ -11,6 +11,8 @@ import { CategoryService } from 'src/app/services';
 })
 export class CreateCategoryComponent implements OnInit {
   @Input() category: Category;
+  categories: Category[] = []
+
   title = 'Create Category'
   buttonText = 'Create'
   constructor(
@@ -22,9 +24,11 @@ export class CreateCategoryComponent implements OnInit {
   }
   isFormSubmitted = false;
   ngOnInit(): void {
+
     this.angForm.patchValue(this.category);
     this.title = this.category._id ? 'Edit Category' : 'Create Category';
     this.buttonText = this.category._id ? 'Update' : 'Create';
+    this.getParentCategory();
   }
 
   angForm: FormGroup;
@@ -55,6 +59,11 @@ export class CreateCategoryComponent implements OnInit {
 
   get form() {
     return this.angForm.controls;
+  }
+  getParentCategory() {
+    this.categoryService.getParentCategory().subscribe(response => {
+      this.categories = response;
+    })
   }
 
 }
