@@ -23,6 +23,8 @@ export class AsideMenuComponent implements OnInit {
   managerMenus = [
     { name: 'Category', link: '/category', icon: './assets/media/icons/duotune/general/gen024.svg' },
     { name: 'Task', link: '/task', icon: './assets/media/icons/duotune/general/gen022.svg' },
+    { name: 'TaskStatus', link: '/task-status', icon: './assets/media/icons/duotune/general/gen022.svg' },
+
   ]
 
   employeeMenus = [
