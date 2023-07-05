@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="btn-close btn-danger text-white" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form method="post" [formGroup]="angForm" novalidate (submit)="submitForm()">
+    <div class="modal-body">
+        <!-- <p>Hello, {{ name }}!</p> -->
+        <div class="row">
+
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Category
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="category" formControlName="category"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.category.errors}" id="category">
+                    <div *ngIf="isFormSubmitted && form.category.errors?.required" class="invalid-feedback">
+                        Category is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Sub Category
+                </label>
+                <div>
+                    <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
+                    <select class="form-control" id="" name="mainCategory" formControlName="mainCategory">
+                        <option value="">Select Category</option>
+                        <option *ngFor="let category of categories"   value="{{category._id}}" selected>{{category.category}}</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Detail
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="detail" formControlName="detail"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.detail.errors}" id="detail">
+                    <div *ngIf="isFormSubmitted && form.detail.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Employee
+                </label>
+                <div>
+                    <select class="form-control" name="employee" formControlName="employee">
+                        <option value="">Select Employee</option>
+                        <option *ngFor="let user of users"   value="{{user._id}}">{{user.firstName}} {{user.middleName}} {{user.lastName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">{{buttonText}}</button>
+        <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+</form>

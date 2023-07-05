@@ -36,6 +36,10 @@ const Routing: Routes = [
     path: 'task-status',
     loadChildren: () => import('./manager/task-status/task-status.module').then((m) => m.TaskStatusModule)
   },
+  {
+    path: 'task',
+    loadChildren: () => import('./manager/task/task.module').then((m) => m.TaskModule)
+  },
 
   // route of project path
 
