@@ -53,4 +53,11 @@ export class CategoryService {
       return response.data;
     }));
   }
+  getSubcategory(id: string): Observable<Category[]> {
+    return this.http.get<{ data: Category[] }>(`${environment.apiUrl}/${this.route}/subcategory/${id}`, {
+      withCredentials: true
+    }).pipe(map(response => {
+      return response.data;
+    }));
+  }
 }

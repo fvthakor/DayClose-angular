@@ -47,7 +47,9 @@
                 <thead>
                     <tr class="fw-bolder text-muted">
                         <th class="min-w-150px">Category</th>
-                        <th class="min-w-150px">Main Category</th>
+                        <th class="min-w-150px">Subcategory</th>
+                        <th class="min-w-150px">Detail</th>
+                        <th class="min-w-150px">Employee</th>
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
                 </thead>
@@ -67,7 +69,18 @@
                                 {{task.subCategory}}
                             </span>
                         </td>
-
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                <!-- {{getCategoryName(category)}} -->
+                                {{task.detail}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                <!-- {{getCategoryName(category)}} -->
+                                {{task.employee}}
+                            </span>
+                        </td>
                         <td class="text-end">
                             <button (click)="open(task)" class="btn btn-icon btn-light-primary btn-sm me-1">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"

@@ -13,15 +13,15 @@ export class CreateTaskComponent implements OnInit {
   @Input() task: Task;
   categories: Category[] = []
   users: User[] = []
-
+  subcategories: Category[] = []
   title = 'Create Task'
   buttonText = 'Create'
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private taskService: TaskService,
-    private categoryService:CategoryService,
-    private userService:UserService
+    private categoryService: CategoryService,
+    private userService: UserService
   ) {
     this.createForm();
   }
@@ -33,12 +33,14 @@ export class CreateTaskComponent implements OnInit {
     this.buttonText = this.task._id ? 'Update' : 'Create';
     this.getParentCategory();
     this.getEmployee();
+
   }
 
   angForm: FormGroup;
   createForm() {
     this.angForm = this.fb.group({
       category: ['', [Validators.required]],
+      mainCategory: ['', [Validators.required]],
       subCategory: [''],
       detail: ['', [Validators.required]],
       employee: ['', [Validators.required]],
@@ -50,9 +52,10 @@ export class CreateTaskComponent implements OnInit {
 
   submitForm() {
     this.isFormSubmitted = true
-    if (this.angForm.invalid) {
-      return;
-    }
+    // if (this.angForm.invalid) {
+    //   
+    //   return;
+    // }
     const formData = this.angForm.value
     if (this.task._id) {
       this.taskService.update(this.task._id, formData).subscribe(response => {
@@ -75,6 +78,12 @@ export class CreateTaskComponent implements OnInit {
     })
   }
 
+  getSubcategory(event: any) {
+    const selectedValue = event.target.value;
+    this.categoryService.getSubcategory(selectedValue).subscribe(response => {
+      this.subcategories = response
+    })
+  }
   getEmployee() {
     this.userService.getEmployee().subscribe(response => {
       this.users = response;

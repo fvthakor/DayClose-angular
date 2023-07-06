@@ -11,7 +11,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 })
 export class TaskComponent implements OnInit {
 
-  
+
   constructor(
     private modalService: NgbModal,
     private taskService: TaskService,
@@ -49,6 +49,7 @@ export class TaskComponent implements OnInit {
 
   getPage(page: any) {
     this.taskService.getAll(page, this.limit, this.query).subscribe(response => {
+      console.log(response);
       this.total = response.total
       this.page = page
       this.tasks = response.data
