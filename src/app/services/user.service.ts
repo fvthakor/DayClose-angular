@@ -13,6 +13,7 @@ export class UserService {
   constructor(
     private http: HttpClient
   ) { }
+  
   getEmployee(): Observable<User[]> {
     return this.http.get<{ data: User[] }>(`${environment.apiUrl}/${this.route}/employee`, { withCredentials: true }).pipe((map(response => response.data)))
   }

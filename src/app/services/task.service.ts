@@ -16,7 +16,7 @@ export class TaskService {
   ) { }
 
 
-  create(data: Task): Observable<Task> {
+  create(data: FormData): Observable<Task> {
     return this.http.post<{ data: Task }>(`${environment.apiUrl}/${this.route}`, data, {
       withCredentials: true
     }).pipe(map(response => {
@@ -36,7 +36,7 @@ export class TaskService {
     return this.http.get<{ data: Task }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }
 
-  update(id: string, data: Task): Observable<Task> {
+  update(id: string, data: FormData): Observable<Task> {
     return this.http.put<{ data: Task }>(`${environment.apiUrl}/${this.route}/${id}`, data, { withCredentials: true }).pipe(map(response => response.data))
   }
 

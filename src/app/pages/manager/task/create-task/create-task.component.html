@@ -15,7 +15,7 @@
                 </label>
                 <div>
                     <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
-                    <select class="form-control" id="" name="category" formControlName="category" (change)="getSubcategory($event)" >
+                    <select class="form-control" id="" name="category" formControlName="category" (change)="getSubcategory()" >
                         <option value="">Select Category</option>
                         <option *ngFor="let category of categories"    value="{{category._id}}" selected>{{category.category}}</option>
                     </select>
@@ -57,7 +57,7 @@
                     Date
                 </label>
                 <div>
-                    <input type="text" class="form-control" name="taskDate" formControlName="taskDate"
+                    <input type="date" value="angForm.value.taskDate" class="form-control" name="taskDate" formControlName="taskDate"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.taskDate.errors}" id="taskDate">
                     <div *ngIf="isFormSubmitted && form.taskDate.errors?.required" class="invalid-feedback">
                         detail is required.
@@ -84,9 +84,9 @@
                 </label>
                 <div>
                     <input type="file" class="form-control" name="image1" formControlName="image1"
-                        [ngClass]="{'is-invalid': isFormSubmitted && form.image1.errors}" id="image1">
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.image1.errors}" id="image1" (change)="onFileSelected($event, 'image1')">
                     <div *ngIf="isFormSubmitted && form.image1.errors?.required" class="invalid-feedback">
-                        detail is required.
+                        Image 1 is required.
                     </div>
                 </div>
             </div>
@@ -96,9 +96,9 @@
                 </label>
                 <div>
                     <input type="file" class="form-control" name="image2" formControlName="image2"
-                        [ngClass]="{'is-invalid': isFormSubmitted && form.image2.errors}" id="image2">
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.image2.errors}" id="image2" (change)="onFileSelected($event, 'image2')">
                     <div *ngIf="isFormSubmitted && form.image2.errors?.required" class="invalid-feedback">
-                        detail is required.
+                        Image2 is required.
                     </div>
                 </div>
             </div>

@@ -1,10 +1,15 @@
+import { Category } from "./Category.model";
+import { Store } from "./Store.model";
+import { User } from "./User.model";
+
 export interface Task {
     _id?: string,
-    user?: string,
-    category: string,
-    subCategory?: string,
+    store?: string | Store,
+    user?: string | User,
+    category?: string | Category,
+    subCategory?: string | Category,
     detail: string,
-    employee: string,
+    employee: string | User,
     taskDate: string,
     image1?: string,
     image2?: string,

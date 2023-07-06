@@ -16,6 +16,9 @@ export class CreateTaskComponent implements OnInit {
   subcategories: Category[] = []
   title = 'Create Task'
   buttonText = 'Create'
+
+  formData = new FormData();
+
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
@@ -27,11 +30,12 @@ export class CreateTaskComponent implements OnInit {
   }
   isFormSubmitted = false;
   ngOnInit(): void {
-
+    console.log('task', this.task);
     this.angForm.patchValue(this.task);
     this.title = this.task._id ? 'Edit Task' : 'Create Task';
     this.buttonText = this.task._id ? 'Update' : 'Create';
     this.getParentCategory();
+    this.getSubcategory();
     this.getEmployee();
 
   }
@@ -40,7 +44,6 @@ export class CreateTaskComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       category: ['', [Validators.required]],
-      mainCategory: ['', [Validators.required]],
       subCategory: [''],
       detail: ['', [Validators.required]],
       employee: ['', [Validators.required]],
@@ -52,17 +55,23 @@ export class CreateTaskComponent implements OnInit {
 
   submitForm() {
     this.isFormSubmitted = true
-    // if (this.angForm.invalid) {
-    //   
-    //   return;
-    // }
-    const formData = this.angForm.value
+    if (this.angForm.invalid) {
+      return;
+    }
+    //const formData = this.angForm.value
+
+    Object.keys(this.f).forEach((key) => {
+      if (!(key == 'image1' || key == 'image2' )) {
+        this.formData.append(`${key}`, this.f[key].value)
+      }
+    });
+
     if (this.task._id) {
-      this.taskService.update(this.task._id, formData).subscribe(response => {
+      this.taskService.update(this.task._id, this.formData).subscribe(response => {
         this.activeModal.close('form submit');
       })
     } else {
-      this.taskService.create(formData).subscribe(response => {
+      this.taskService.create(this.formData).subscribe(response => {
         this.activeModal.close('form submit');
       })
     }
@@ -78,9 +87,9 @@ export class CreateTaskComponent implements OnInit {
     })
   }
 
-  getSubcategory(event: any) {
-    const selectedValue = event.target.value;
-    this.categoryService.getSubcategory(selectedValue).subscribe(response => {
+  getSubcategory() {
+    //const selectedValue = event.target.value;
+    this.categoryService.getSubcategory(this.angForm.value.category).subscribe(response => {
       this.subcategories = response
     })
   }
@@ -88,6 +97,19 @@ export class CreateTaskComponent implements OnInit {
     this.userService.getEmployee().subscribe(response => {
       this.users = response;
     })
+  }
+
+  onFileSelected(event: Event, type: string) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) {
+      return;
+    }
+    const file: File = input.files[0];
+    this.formData.append(`${type}`, file);
+  }
+
+  get f() {
+    return this.angForm.controls;
   }
 
 }

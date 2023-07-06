@@ -48,8 +48,9 @@
                     <tr class="fw-bolder text-muted">
                         <th class="min-w-150px">Category</th>
                         <th class="min-w-150px">Subcategory</th>
-                        <th class="min-w-150px">Detail</th>
+                        <th class="min-w-150px">Task Detail</th>
                         <th class="min-w-150px">Employee</th>
+                        <th class="min-w-150px">Images</th>
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
                 </thead>
@@ -60,13 +61,13 @@
                         *ngFor="let task of tasks | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{task.category}}
+                                {{getCategoryName(task)}}
                             </span>
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{task.subCategory}}
+                                {{getsubCategoryName(task)}}
                             </span>
                         </td>
                         <td>
@@ -78,7 +79,14 @@
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{task.employee}}
+                                {{getEmployeeName(task)}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                <!-- {{getCategoryName(category)}} -->
+                                <img *ngIf="task.image1" [src]="task.image1" height="50" style="margin: 5px;" />
+                                <img *ngIf="task.image2" [src]="task.image2" height="50" style="margin: 5px;" />
                             </span>
                         </td>
                         <td class="text-end">
