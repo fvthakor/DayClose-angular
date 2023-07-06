@@ -8,31 +8,37 @@
         <!-- <p>Hello, {{ name }}!</p> -->
         <div class="row">
 
+            
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
-                    Category
+                     Category
                 </label>
                 <div>
-                    <input type="text" class="form-control" name="category" formControlName="category"
-                        [ngClass]="{'is-invalid': isFormSubmitted && form.category.errors}" id="category">
+                    <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
+                    <select class="form-control" id="" name="category" formControlName="category" (change)="getSubcategory($event)" >
+                        <option value="">Select Category</option>
+                        <option *ngFor="let category of categories"    value="{{category._id}}" selected>{{category.category}}</option>
+                    </select>
                     <div *ngIf="isFormSubmitted && form.category.errors?.required" class="invalid-feedback">
-                        Category is required.
+                        detail is required.
                     </div>
                 </div>
             </div>
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
-                    Sub Category
+                    SubCategory
                 </label>
                 <div>
                     <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
-                    <select class="form-control" id="" name="mainCategory" formControlName="mainCategory">
+                    <select class="form-control" id="" name="subCategory" formControlName="subCategory" >
                         <option value="">Select Category</option>
-                        <option *ngFor="let category of categories"   value="{{category._id}}" selected>{{category.category}}</option>
+                        <option *ngFor="let subcategory of subcategories" value="{{subcategory._id}}" selected>{{subcategory.category}}</option>
                     </select>
+                    <div *ngIf="isFormSubmitted && form.subCategory.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
                 </div>
             </div>
-
 
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
@@ -46,7 +52,18 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Date
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="taskDate" formControlName="taskDate"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.taskDate.errors}" id="taskDate">
+                    <div *ngIf="isFormSubmitted && form.taskDate.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
                     Employee
@@ -56,6 +73,33 @@
                         <option value="">Select Employee</option>
                         <option *ngFor="let user of users"   value="{{user._id}}">{{user.firstName}} {{user.middleName}} {{user.lastName}}</option>
                     </select>
+                    <div *ngIf="isFormSubmitted && form.employee.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Image 1
+                </label>
+                <div>
+                    <input type="file" class="form-control" name="image1" formControlName="image1"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.image1.errors}" id="image1">
+                    <div *ngIf="isFormSubmitted && form.image1.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Image2
+                </label>
+                <div>
+                    <input type="file" class="form-control" name="image2" formControlName="image2"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.image2.errors}" id="image2">
+                    <div *ngIf="isFormSubmitted && form.image2.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
                 </div>
             </div>
         </div>
