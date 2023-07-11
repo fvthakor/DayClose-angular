@@ -7,11 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TaskProgressComponent } from './task-progress/task-progress.component';
+import { CreateTaskProgressComponent } from './task-progress/create-task-progress/create-task-progress.component';
 
 @NgModule({
   declarations: [
     TaskComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TaskProgressComponent,
+    CreateTaskProgressComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +24,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
         path: '',
         component: TaskComponent,
       },
+      {
+        path: 'task-progress/:_id',
+        component: TaskProgressComponent
+      }
     ]),
     FormsModule,
     ReactiveFormsModule,

@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="btn-close btn-danger text-white" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form method="post" [formGroup]="angForm" novalidate (submit)="submitForm()">
+    <div class="modal-body">
+        <!-- <p>Hello, {{ name }}!</p> -->
+        <div class="row">
+
+            
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                     Category
+                </label>
+                <div>
+                    <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
+                    <select class="form-control" id="taskStatus" name="taskStatus" formControlName="taskStatus">
+                        <option value="">Select Category</option>
+                        <option *ngFor="let category of taskdata"    value="{{category._id}}" selected>{{category.status}}</option>
+                    </select>
+                    <div *ngIf="isFormSubmitted && form.taskStatus.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
+                </div>
+            </div>
+           
+
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Remark
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="remark" formControlName="remark"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.remark.errors}" id="remark">
+                    <div *ngIf="isFormSubmitted && form.remark.errors?.required" class="invalid-feedback">
+                        detail is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Image 1
+                </label>
+                <div>
+                    <input type="file" class="form-control" name="image1" formControlName="image1"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.image1.errors}" id="image1" (change)="onFileSelected($event, 'image1')">
+                    <div *ngIf="isFormSubmitted && form.image1.errors?.required" class="invalid-feedback">
+                        Image 1 is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Image2
+                </label>
+                <div>
+                    <input type="file" class="form-control" name="image2" formControlName="image2"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.image2.errors}" id="image2" (change)="onFileSelected($event, 'image2')">
+                    <div *ngIf="isFormSubmitted && form.image2.errors?.required" class="invalid-feedback">
+                        Image2 is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">{{buttonText}}</button>
+        <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+</form>

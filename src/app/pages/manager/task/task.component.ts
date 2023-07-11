@@ -31,13 +31,14 @@ export class TaskComponent implements OnInit {
     this.getPage(1);
   }
 
-  getCategoryName1(category:Category){
+  getCategoryName1(category: Category) {
     return '';
   }
 
   open(task: Task) {
     const modelRef = this.modalService.open(CreateTaskComponent);
-    modelRef.componentInstance.task = {...task, 
+    modelRef.componentInstance.task = {
+      ...task,
       category: typeof task.category === 'string' ? task.category : task.category?._id,
       subCategory: typeof task.subCategory === 'string' ? task.subCategory : task.subCategory?._id,
       employee: typeof task.employee === 'string' ? task.employee : task.employee._id,
@@ -79,7 +80,7 @@ export class TaskComponent implements OnInit {
     return task.subCategory && typeof task.subCategory !== 'string' ? task.subCategory.category : task.subCategory;
   }
 
-  getEmployeeName(task:Task){
+  getEmployeeName(task: Task) {
     return task.employee && typeof task.employee !== 'string' ? `${task.employee.firstName} ${task.employee.lastName}` : task.employee;
   }
 
