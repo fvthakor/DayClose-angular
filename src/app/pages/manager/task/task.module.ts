@@ -25,7 +25,7 @@ import { CreateTaskProgressComponent } from './task-progress/create-task-progres
         component: TaskComponent,
       },
       {
-        path: 'task-progress/:_id',
+        path: ':id',
         component: TaskProgressComponent
       }
     ]),

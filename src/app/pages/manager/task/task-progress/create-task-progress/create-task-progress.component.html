@@ -11,12 +11,12 @@
             
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
-                     Category
+                     Status
                 </label>
                 <div>
                     <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
                     <select class="form-control" id="taskStatus" name="taskStatus" formControlName="taskStatus">
-                        <option value="">Select Category</option>
+                        <option value="">Select Status</option>
                         <option *ngFor="let category of taskdata"    value="{{category._id}}" selected>{{category.status}}</option>
                     </select>
                     <div *ngIf="isFormSubmitted && form.taskStatus.errors?.required" class="invalid-feedback">

@@ -4,6 +4,8 @@ import { TaskProgress } from 'src/app/models';
 import { CreateTaskProgressComponent } from './create-task-progress/create-task-progress.component';
 import { TaskProgressService, HelperService } from 'src/app/services';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService, UserType } from 'src/app/modules/auth';
 @Component({
   selector: 'app-task-progress',
   templateUrl: './task-progress.component.html',
@@ -17,6 +19,7 @@ export class TaskProgressComponent implements OnInit {
     private helperService: HelperService,
     private taskProgressService: TaskProgressService,
     private changeDetectorRef: ChangeDetectorRef,
+    private auth: AuthService,
 
   ) { }
   limit = 10;
@@ -26,15 +29,21 @@ export class TaskProgressComponent implements OnInit {
   totalPages = 0
   totalPageSize = 0
   query = ''
-  ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
 
-    this.getPage(1,);
+  user$: Observable<UserType>;
+  taskId:String;
+  ngOnInit(): void {
+    
+    this.user$ = this.auth.currentUserSubject.asObservable();
+    this.route.params.subscribe(params => {
+      this.taskId = params['id']
+      this.getPage(1);
+   });
   }
   open(taskProgress: TaskProgress) {
     const modelRef = this.modalService.open(CreateTaskProgressComponent);
     modelRef.componentInstance.taskProgress = {
-      ...taskProgress,
+      ...taskProgress, task: this.taskId , taskStatus: typeof taskProgress.taskStatus == 'string' ?  taskProgress.taskStatus : taskProgress.taskStatus?._id
 
     };
     modelRef.result.then(
@@ -51,9 +60,7 @@ export class TaskProgressComponent implements OnInit {
     );
   }
   getPage(page: any) {
-    var id = this.route.snapshot.paramMap.get('_id');
-    console.log(id);
-    this.taskProgressService.getTaskStatusAll(page, this.limit, this.query, id).subscribe(response => {
+    this.taskProgressService.getTaskStatusAll(page, this.limit, this.query, this.taskId).subscribe(response => {
       console.log(response);
       this.total = response.total
       this.page = page

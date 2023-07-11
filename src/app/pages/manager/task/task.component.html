@@ -90,6 +90,10 @@
                             </span>
                         </td>
                         <td class="text-end">
+                            <a class="btn btn-icon btn-light-primary btn-sm me-1" routerLink="/task/{{task._id}}">
+                                <span [inlineSVG]="'./assets/media/icons/duotune/art/art006.svg'"
+                                class="svg-icon svg-danger svg-icon-3"></span>
+                            </a>
                             <button (click)="open(task)" class="btn btn-icon btn-light-primary btn-sm me-1">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
                                     class="svg-icon svg-icon-3"></span>
@@ -99,10 +103,7 @@
                                 <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
                                     class="svg-icon svg-danger svg-icon-3"></span>
                             </button>
-                            <a class="btn btn-icon btn-light-primary btn-sm me-1" routerLink="/task/task-progress/{{task._id}}">
-                                <span [inlineSVG]="'./assets/media/icons/duotune/art/art006.svg'"
-                                class="svg-icon svg-danger svg-icon-3"></span>
-                            </a>
+                           
                         </td>
                     </tr>
                 </tbody>

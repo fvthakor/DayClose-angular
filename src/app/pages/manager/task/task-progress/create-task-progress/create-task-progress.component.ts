@@ -1,7 +1,9 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { Category, Task, User, TaskProgress, TaskStatus } from 'src/app/models';
 import { CategoryService, TaskService, UserService, TaskProgressService, TaskStatusService } from 'src/app/services';
 @Component({
@@ -21,6 +23,7 @@ export class CreateTaskProgressComponent implements OnInit {
   buttonText = 'Create'
 
   formData = new FormData();
+  private routeSub: Subscription;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -29,19 +32,24 @@ export class CreateTaskProgressComponent implements OnInit {
     private categoryService: CategoryService,
     private userService: UserService,
     private taskStatusService: TaskStatusService,
-    private taskProgressService: TaskProgressService
+    private taskProgressService: TaskProgressService,
+    private route: ActivatedRoute
   ) {
     this.createForm();
   }
   isFormSubmitted = false;
+  taskId:string = ''
   ngOnInit(): void {
-
+    
     this.angForm.patchValue(this.taskProgress);
     this.title = this.taskProgress._id ? 'Edit Task' : 'Create Task';
     this.buttonText = this.taskProgress._id ? 'Update' : 'Create';
 
-    this.getEmployee();
+    //this.getEmployee();
     this.getTaskstatus();
+  }
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   angForm: FormGroup;
@@ -49,13 +57,13 @@ export class CreateTaskProgressComponent implements OnInit {
     this.angForm = this.fb.group({
       taskStatus: ['', [Validators.required]],
       remark: ['', [Validators.required]],
-      task: [''],
+      task: [],
       image1: [''],
       image2: ['']
     });
   }
   submitForm() {
-
+    const taskId = this.taskId;
     this.isFormSubmitted = true
     if (this.angForm.invalid) {
       return;
@@ -76,8 +84,6 @@ export class CreateTaskProgressComponent implements OnInit {
         this.activeModal.close('form submit');
       })
     } else {
-
-      this.formData.append('task', "64a90feb9cfab7af710ce5e5");
       this.taskProgressService.create(this.formData).subscribe(response => {
         this.activeModal.close('form submit');
       })
@@ -100,11 +106,11 @@ export class CreateTaskProgressComponent implements OnInit {
       this.subcategories = response
     })
   }
-  getEmployee() {
-    this.userService.getEmployee().subscribe(response => {
-      this.users = response;
-    })
-  }
+  // getEmployee() {
+  //   this.userService.getEmployee().subscribe(response => {
+  //     this.users = response;
+  //   })
+  // }
   getTaskstatus() {
     this.taskStatusService.getStatus().subscribe(response => {
       this.taskdata = response;
