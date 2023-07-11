@@ -40,6 +40,9 @@ export class TaskStatusService {
     return this.http.get<{ data: TaskStatus }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }
 
+  getStatus(): Observable<TaskStatus[]> {
+    return this.http.get<{ data: TaskStatus[] }>(`${environment.apiUrl}/${this.route}/all`, { withCredentials: true }).pipe(map(response => response.data))
+  }
   update(id: string, data: TaskStatus): Observable<TaskStatus> {
     return this.http.put<{ data: TaskStatus }>(`${environment.apiUrl}/${this.route}/${id}`, data, { withCredentials: true }).pipe(map(response => response.data))
   }

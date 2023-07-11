@@ -18,12 +18,8 @@
                 <li class="breadcrumb-item active" aria-current="page">Task</li>
             </ol>
         </div>
-
-
     </div>
 </nav>
-
-
 <div class="card">
     <!-- begin::Header -->
     <div class="card-header border-0 pt-5">
@@ -32,8 +28,8 @@
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({category: '', subCategory: '', detail: '', employee: '', taskDate: ''})">Crate
-                Task</button>
+            <button class="btn btn-primary btn-sm" (click)="open({task:'',taskStatus: '', remark: ''})">Crate
+               Create Task Progress</button>
         </div>
     </div>
     <!-- end::Header -->
@@ -46,10 +42,10 @@
                 <!-- begin::Table head -->
                 <thead>
                     <tr class="fw-bolder text-muted">
-                        <th class="min-w-150px">Category</th>
-                        <th class="min-w-150px">Subcategory</th>
-                        <th class="min-w-150px">Task Detail</th>
-                        <th class="min-w-150px">Employee</th>
+                        <!-- <th class="min-w-150px">Category</th>
+                        <th class="min-w-150px">Subcategory</th> -->
+                        <th class="min-w-150px">Task Status</th>
+                        <th class="min-w-150px">Remark</th>
                         <th class="min-w-150px">Images</th>
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
@@ -61,33 +57,34 @@
                         *ngFor="let task of tasks | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{getCategoryName(task)}}
+                                
+                                {{getTaskStatusName(task)}}
                             </span>
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{getsubCategoryName(task)}}
+                                <!-- {{getsubCategoryName(task)}} -->
+                                {{task.remark}}
                             </span>
                         </td>
-                        <td>
+                        <!-- <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
+                                
                                 {{task.detail}}
                             </span>
-                        </td>
+                        </td> -->
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
+                            <!-- <span class="text-dark fw-bolder text-hover-primary fs-6">
+                               {{getCategoryName(category)}} 
                                 {{getEmployeeName(task)}}
-                            </span>
+                            </span> -->
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                <img *ngIf="task.image1" [src]="task.image1" height="50" style="margin: 5px;" />
+                            <!-- <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                                                <img *ngIf="task.image1" [src]="task.image1" height="50" style="margin: 5px;" />
                                 <img *ngIf="task.image2" [src]="task.image2" height="50" style="margin: 5px;" />
-                            </span>
+                            </span> -->
                         </td>
                         <td class="text-end">
                             <button (click)="open(task)" class="btn btn-icon btn-light-primary btn-sm me-1">
