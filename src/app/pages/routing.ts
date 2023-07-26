@@ -27,7 +27,6 @@ const Routing: Routes = [
     path: 'pincode',
     loadChildren: () => import('./admin/pincode/pincode.module').then((m) => m.PincodeModule)
   },
-
   {
     path: 'category',
     loadChildren: () => import('./manager/category/category.module').then((m) => m.CategoryModule)
@@ -39,6 +38,10 @@ const Routing: Routes = [
   {
     path: 'task',
     loadChildren: () => import('./manager/task/task.module').then((m) => m.TaskModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./admin/user/user.module').then((m) => m.UserModule)
   },
 
   // route of project path

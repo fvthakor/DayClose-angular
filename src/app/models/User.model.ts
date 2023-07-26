@@ -5,4 +5,13 @@ export interface User {
     middleName: string,
     lastName: string,
     userName: string,
+    address: string,
+    role: string,
+    email: string
+}
+
+export interface UserPagination {
+    data: User[],
+    message: string,
+    total: number,
 }

@@ -1,0 +1,537 @@
+<div *ngIf="user$ | async as _user">
+  {{getCity(_user)}}
+<form class="form row fv-plugins-bootstrap5 fv-plugins-framework p-8" novalidate="novalidate"
+  id="" [formGroup]="registrationForm" (ngSubmit)="submit()">
+  <!--begin::Heading-->
+  <div class="mb-10 text-center">
+    <h1 class="text-dark mb-3">Create an Account</h1>
+  </div>
+  <!--end::Heading-->
+
+  <!-- begin::Alert error-->
+  <ng-container *ngIf="hasError">
+    <div class="mb-lg-15 alert alert-danger">
+      <div class="alert-text font-weight-bold">
+        The registration details are incorrect
+      </div>
+    </div>
+  </ng-container>
+  <!-- end::Alert error-->
+  
+    
+  
+  
+  <!--begin::Form group-->
+  <!-- <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Type</label>
+
+    <select class="form-control form-control-lg form-control-solid" name="role" formControlName="role" [ngClass]="{
+  'is-invalid': registrationForm.controls['role'].invalid,
+  'is-valid': registrationForm.controls['role'].valid
+}">
+      <option value="">--Select Type--</option>
+      <option value="employee">Employee</option>
+      <option value="manager">Manager</option>
+    </select>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+      validation: 'required',
+      message: 'Type is required',
+      control: registrationForm.controls['role']
+    }"></ng-container>
+  </div> -->
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class=" fv-row mb-7 col-md-4">
+    <label class="form-label fw-bolder text-dark fs-6">First Name</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="firstName"
+      formControlName="firstName" placeholder="firstName" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['firstName'].invalid,
+        'is-valid': registrationForm.controls['firstName'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'First Name is required',
+        control: registrationForm.controls['firstName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'First Name should have at least 3 symbols',
+        control: registrationForm.controls['firstName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'First Name should have maximum 100 symbols',
+        control: registrationForm.controls['firstName']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+  <div class=" fv-row mb-7 col-md-4">
+    <label class="form-label fw-bolder text-dark fs-6">Middle Name</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="middleName"
+      formControlName="middleName" placeholder="middleName" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['middleName'].invalid,
+        'is-valid': registrationForm.controls['middleName'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Middle Name is required',
+        control: registrationForm.controls['middleName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'Middle Name should have at least 3 symbols',
+        control: registrationForm.controls['middleName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'Middle Name should have maximum 100 symbols',
+        control: registrationForm.controls['middleName']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+
+  <div class=" fv-row mb-7 col-md-4">
+    <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="lastName"
+      formControlName="lastName" placeholder="lastName" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['lastName'].invalid,
+        'is-valid': registrationForm.controls['lastName'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Last Name is required',
+        control: registrationForm.controls['lastName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'Last Name should have at least 3 symbols',
+        control: registrationForm.controls['lastName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'Last Name should have maximum 100 symbols',
+        control: registrationForm.controls['lastName']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="fv-row mb-7 col-md-4">
+    <label class="form-label fw-bolder text-dark fs-6">Emplyee Id</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="emplyeeId"
+      formControlName="emplyeeId" placeholder="Emplyee Id" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['emplyeeId'].invalid,
+        'is-valid': registrationForm.controls['emplyeeId'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Emplyee Id is required',
+        control: registrationForm.controls['emplyeeId']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">User Name</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="userName"
+      formControlName="userName" placeholder="userName" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['userName'].invalid,
+        'is-valid': registrationForm.controls['userName'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'User Name is required',
+        control: registrationForm.controls['userName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'User Name should have at least 3 symbols',
+        control: registrationForm.controls['userName']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'User Name should have maximum 100 symbols',
+        control: registrationForm.controls['userName']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Mobile</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="phoneNumber"
+      formControlName="phoneNumber" placeholder="Mobile" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['phoneNumber'].invalid,
+        'is-valid': registrationForm.controls['phoneNumber'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Mobile is required',
+        control: registrationForm.controls['phoneNumber']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
+    <label class="form-label fw-bolder text-dark fs-6">Address</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="address" formControlName="address"
+      placeholder="address" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['address'].invalid,
+        'is-valid': registrationForm.controls['address'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Address is required',
+        control: registrationForm.controls['address']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
+    <label class="form-label fw-bolder text-dark fs-6">City</label>
+
+    <select class="form-control form-control-lg form-control-solid" name="city" formControlName="city" [ngClass]="{
+    'is-invalid': registrationForm.controls['city'].invalid,
+    'is-valid': registrationForm.controls['city'].valid
+  }" (change)="cityChanged()">
+      <option value="">--Select City--</option>
+      <option *ngFor="let city of cities" [value]="city._id">{{city.name}}</option>
+      <!-- <option value="doc2">doc2</option>
+      <option value="doc3">doc3</option> -->
+    </select>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'city is required',
+        control: registrationForm.controls['city']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
+    <label class="form-label fw-bolder text-dark fs-6">Pincode</label>
+    <select class="form-control form-control-lg form-control-solid" name="pincode" formControlName="pincode" [ngClass]="{
+      'is-invalid': registrationForm.controls['pincode'].invalid,
+      'is-valid': registrationForm.controls['pincode'].valid
+    }">
+      <option value="">--Select City--</option>
+      <option *ngFor="let pincode of pincodes" [value]="pincode._id">{{pincode.pincode}}</option>
+      <!-- <option value="doc2">doc2</option>
+        <option value="doc3">doc3</option> -->
+    </select>
+    <!-- <input class="form-control form-control-lg form-control-solid" type="text" name="pincode" formControlName="pincode"
+      placeholder="pincode" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['city'].invalid,
+        'is-valid': registrationForm.controls['city'].valid
+      }" /> -->
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'pincode is required',
+        control: registrationForm.controls['pincode']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Email</label>
+    <input class="form-control form-control-lg form-control-solid" type="email" placeholder="Email" name="email"
+      formControlName="email" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['email'].invalid,
+        'is-valid': registrationForm.controls['email'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Email is required',
+        control: registrationForm.controls['email']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'email',
+        message: 'Email is invalid',
+        control: registrationForm.controls['email']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'Email should have at least 3 symbols',
+        control: registrationForm.controls['email']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'Email should have maximum 360 symbols',
+        control: registrationForm.controls['email']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 mb-10 fv-row">
+    <label class="form-label fw-bolder text-dark fs-6">Password</label>
+    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="Password"
+      name="password" formControlName="password" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['password'].invalid,
+        'is-valid': registrationForm.controls['password'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Password is required',
+        control: registrationForm.controls['password']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'Password should have at least 3 symbols',
+        control: registrationForm.controls['password']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'Password should have maximum 100 symbols',
+        control: registrationForm.controls['password']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-5">
+    <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
+    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="Confirm password"
+      name="cPassword" autocomplete="off" formControlName="cPassword" [ngClass]="{
+        'is-invalid': registrationForm.controls['cPassword'].invalid,
+        'is-valid': registrationForm.controls['cPassword'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Confirm Password is required',
+        control: registrationForm.controls['cPassword']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'minlength',
+        message: 'Confirm Password should have at least 3 symbols',
+        control: registrationForm.controls['cPassword']
+      }"></ng-container>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'maxLength',
+        message: 'Confirm Password should have maximum 100 symbols',
+        control: registrationForm.controls['cPassword']
+      }"></ng-container>
+    <ng-container *ngIf="
+        registrationForm.controls['cPassword'].errors &&
+        registrationForm.controls['cPassword'].errors.ConfirmPassword
+      ">
+      <div class="fv-plugins-message-container">
+        <div class="fv-help-block">
+          'Passsword' and 'Confirm Password' didn't match.
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Document Type</label>
+    <select class="form-control form-control-lg form-control-solid" name="documentType" formControlName="documentType"
+      [ngClass]="{
+      'is-invalid': registrationForm.controls['documentType'].invalid,
+      'is-valid': registrationForm.controls['documentType'].valid
+    }">
+      <option value="">--Select Document Type--</option>
+      <option [value]="document._id" *ngFor="let document of documentTypes">{{document.name}}</option>
+    </select>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Document Type is required',
+        control: registrationForm.controls['documentType']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Document Number</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="documentNumber"
+      formControlName="documentNumber" placeholder="Document Number" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['documentNumber'].invalid,
+        'is-valid': registrationForm.controls['documentNumber'].valid
+      }" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Document Number is required',
+        control: registrationForm.controls['documentNumber']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Document Front Image</label>
+    <input class="form-control form-control-lg form-control-solid" type="file" name="documentFront"
+      formControlName="documentFront" placeholder="pincode" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['documentFront'].invalid,
+        'is-valid': registrationForm.controls['documentFront'].valid
+      }" (change)="onFileSelected($event, 'documentFront')" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Document Front Image is required',
+        control: registrationForm.controls['documentFront']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Document Back Image</label>
+    <input class="form-control form-control-lg form-control-solid" type="file" name="documentBack"
+      formControlName="documentBack" placeholder="Document Back Image" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['documentBack'].invalid,
+        'is-valid': registrationForm.controls['documentBack'].valid
+      }" (change)="onFileSelected($event, 'documentBack')" />
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Document Back Image is required',
+        control: registrationForm.controls['documentBack']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Skill</label>
+    <select class="form-control form-control-lg form-control-solid" name="skill" formControlName="skill" [ngClass]="{
+      'is-invalid': registrationForm.controls['skill'].invalid,
+      'is-valid': registrationForm.controls['skill'].valid
+    }">
+      <option value="">--Select Skill--</option>
+      <option [value]="skill._id" *ngFor="let skill of skills">{{skill.name}}</option>
+    </select>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Skill is required',
+        control: registrationForm.controls['skill']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
+    <label class="form-label fw-bolder text-dark fs-6">Store</label>
+    <select class="form-control form-control-lg form-control-solid" name="store" formControlName="store" [ngClass]="{
+      'is-invalid': registrationForm.controls['store'].invalid,
+      'is-valid': registrationForm.controls['store'].valid
+    }">
+      <option value="">--Select Store--</option>
+      <option [value]="store._id" *ngFor="let store of stores">{{store.name}}</option>
+    </select>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Store is required',
+        control: registrationForm.controls['store']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Remark 1</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="remark1" formControlName="remark1"
+      placeholder="Remark 1" autocomplete="off" />
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Remark 2</label>
+    <input class="form-control form-control-lg form-control-solid" type="text" name="remark2" formControlName="remark2"
+      placeholder="Remark 2" autocomplete="off" />
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Employee Photo</label>
+    <input class="form-control form-control-lg form-control-solid" type="file" name="employeePhoto"
+      formControlName="employeePhoto" placeholder="Employee Photo" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['employeePhoto'].invalid,
+        'is-valid': registrationForm.controls['employeePhoto'].valid
+      }" (change)="onFileSelected($event, 'employeePhoto')" />
+
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'Employee Photo is required',
+        control: registrationForm.controls['employeePhoto']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <!-- <div class="fv-row mb-10">
+    <div class="form-check form-check-custom form-check-solid">
+      <input id="kt_login_toc_agree" type="checkbox" formControlName="agree" name="agree" class="form-check-input" />
+
+      <label for="kt_login_toc_agree" class="form-check-label fw-bold text-gray-700 fs-6">
+        I Agree the&nbsp;<a href="https://keenthemes.com/metronic/?page=faq" target="_blank"
+          class="ms-1 link-primary">terms and conditions</a>.
+      </label>
+    </div>
+  </div> -->
+  <!--end::Form group-->
+
+  <div class="d-flex flex-row-reverse">
+    <!-- <div class="p-2">
+      <a routerLink="/auth/login" type="button" id="kt_login_signup_form_cancel_button"
+        class="btn btn-lg btn-light-danger w-100 mb-5">
+        Cancel
+      </a>
+    </div> -->
+    <div class="p-2">
+      <button type="submit" id="kt_sign_up_submit" [disabled]="
+      registrationForm.invalid 
+    " class="btn btn-lg btn-primary w-100 mb-5">
+        <ng-container *ngIf="(isLoading$ | async) === false">
+          <span class="indicator-label">Create</span>
+        </ng-container>
+        <ng-container *ngIf="isLoading$ | async">
+          <span class="indicator-progress" [style.display]="'block'">
+            Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+          </span>
+        </ng-container>
+      </button>
+    </div>
+
+  </div>
+
+
+  <!--begin::Form group-->
+  <div class="text-center">
+
+
+  </div>
+  <!--end::Form group-->
+</form>
+</div>
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+  <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+    <div class="fv-plugins-message-container">
+      <div class="fv-help-block">
+        <span role="alert">
+          {{ message }}
+        </span>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

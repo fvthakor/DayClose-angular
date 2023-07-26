@@ -78,19 +78,19 @@
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
-                                {{store.address}}
+                                {{getCity(store)}}
                             </span>
                             <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: Paid</span> -->
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
-                                {{store.city}}
+                                {{store.address}}
                             </span>
                             <!-- <span class="text-muted fw-bold text-muted d-block fs-7">
                                 Web, UI/UX Design
                             </span> -->
                         </td>
-                        <td class="text-dark fw-bolder text-hover-primary fs-6">{{store.pincode}}</td>
+                        <td class="text-dark fw-bolder text-hover-primary fs-6">{{getPincode(store) }}</td>
                         <!-- <td>
                             <span class="badge badge-light-success">Approved</span>
                         </td> -->

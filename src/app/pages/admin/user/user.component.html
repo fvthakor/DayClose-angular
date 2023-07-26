@@ -15,7 +15,7 @@
         <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Task</li>
+                <li class="breadcrumb-item active" aria-current="page">User</li>
             </ol>
         </div>
 
@@ -28,12 +28,11 @@
     <!-- begin::Header -->
     <div class="card-header border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder fs-3 mb-1">Task</span>
+            <!-- <span class="card-label fw-bolder fs-3 mb-1">Store</span> -->
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({category: '', subCategory: '', detail: '', employee: '', taskDate: ''})">Crate
-                Task</button>
+            <button class="btn btn-primary btn-sm" (click)="open({})">Crate</button>
         </div>
     </div>
     <!-- end::Header -->
@@ -46,13 +45,14 @@
                 <!-- begin::Table head -->
                 <thead>
                     <tr class="fw-bolder text-muted">
-                        <th class="min-w-150px">Category</th>
-                        <th class="min-w-150px">Subcategory</th>
-                        <th class="min-w-150px">Status</th>
-                        <th class="min-w-150px">Task Detail</th>
-                        <th class="min-w-150px">Employee</th>
-                        <th class="min-w-150px">Images</th>
-                        
+                        <th class="min-w-150px">First Name</th>
+                        <th class="min-w-150px">Last Name</th>
+                        <th class="min-w-150px">Email</th>
+                        <!-- <th class="min-w-140px">Store</th>
+                        <th class="min-w-120px">City</th> -->
+                        <th class="min-w-120px">Address</th>
+                        <!-- <th class="min-w-120px">Pincode</th> -->
+                        <!-- <th class="min-w-120px">Status</th> -->
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
                 </thead>
@@ -60,57 +60,45 @@
                 <!-- begin::Table body -->
                 <tbody>
                     <tr
-                        *ngFor="let task of tasks | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
+                        *ngFor="let store of stores | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{getCategoryName(task)}}
+                                {{store.firstName}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                {{getsubCategoryName(task)}}
+                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                                {{store.lastName}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{task.status}}
+                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                                {{store.email}}
                             </span>
+                            <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: PH</span> -->
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                {{task.detail}}
+                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                                {{store.address}}
                             </span>
+                            <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: Paid</span> -->
                         </td>
-                        <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                {{getEmployeeName(task)}}
+                        <!-- <td>
+                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                                {{store.city}}
                             </span>
-                        </td>
-                        <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                <img *ngIf="task.image1" [src]="task.image1" height="50" style="margin: 5px;" />
-                                <img *ngIf="task.image2" [src]="task.image2" height="50" style="margin: 5px;" />
-                            </span>
-                        </td>
-                        <td class="text-end" *ngIf="user$ | async as _user">
-                            <a class="btn btn-icon btn-light-primary btn-sm me-1" routerLink="/task/{{task._id}}">
-                                <span [inlineSVG]="'./assets/media/icons/duotune/art/art006.svg'"
-                                class="svg-icon svg-danger svg-icon-3"></span>
-                            </a>
-                            <button *ngIf="_user.role === 'manager'" (click)="open(task)" class="btn btn-icon btn-light-primary btn-sm me-1">
+                        </td> -->
+                        
+                        <td class="text-end">
+                            <!-- <button (click)="open(store)" class="btn btn-icon btn-light-primary btn-sm me-1">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
                                     class="svg-icon svg-icon-3"></span>
-                            </button>
-                            <button *ngIf="_user.role === 'manager'" (click)="delete(task._id ? task._id : '')"
+                            </button> -->
+                            <button (click)="delete(store._id ? store._id : '')"
                                 class="btn btn-icon btn-light-danger btn-sm">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
                                     class="svg-icon svg-danger svg-icon-3"></span>
                             </button>
-                           
                         </td>
                     </tr>
                 </tbody>

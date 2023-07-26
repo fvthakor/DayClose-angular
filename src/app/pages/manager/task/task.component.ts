@@ -4,6 +4,8 @@ import { Category, Task } from 'src/app/models';
 import { HelperService, TaskService } from 'src/app/services';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import * as moment from 'moment';
+import { AuthService, UserType } from 'src/app/modules/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -14,12 +16,13 @@ export class TaskComponent implements OnInit {
 
 
   constructor(
+    private auth: AuthService,
     private modalService: NgbModal,
     private taskService: TaskService,
     private changeDetectorRef: ChangeDetectorRef,
     private helperService: HelperService
   ) { }
-
+  user$: Observable<UserType>;
   limit = 10;
   total = 0;
   page = 1;
@@ -29,6 +32,7 @@ export class TaskComponent implements OnInit {
   query = ''
   ngOnInit(): void {
     this.getPage(1);
+    this.user$ = this.auth.currentUserSubject.asObservable();
   }
 
   getCategoryName1(category: Category) {

@@ -18,12 +18,14 @@ export class AsideMenuComponent implements OnInit {
     { name: 'Skill', link: '/skill', icon: './assets/media/icons/duotune/general/gen021.svg' },
     { name: 'City', link: '/city', icon: './assets/media/icons/duotune/general/gen024.svg' },
     { name: 'Pincode', link: '/pincode', icon: './assets/media/icons/duotune/general/gen025.svg' },
+    { name: 'Manager', link: '/user', icon: './assets/media/icons/duotune/general/gen026.svg' },
   ]
 
   managerMenus = [
     { name: 'Category', link: '/category', icon: './assets/media/icons/duotune/general/gen024.svg' },
     { name: 'Task', link: '/task', icon: './assets/media/icons/duotune/general/gen022.svg' },
     { name: 'TaskStatus', link: '/task-status', icon: './assets/media/icons/duotune/general/gen022.svg' },
+    { name: 'Employee', link: '/user', icon: './assets/media/icons/duotune/general/gen026.svg' },
 
   ]
 

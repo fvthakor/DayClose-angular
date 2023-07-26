@@ -1,19 +1,19 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CreateStoreComponent } from './create-store/create-store.component';
-import { HelperService, StoreService } from 'src/app/services';
-import { Store } from 'src/app/models';
+import { User } from 'src/app/models';
+import { HelperService, UserService } from 'src/app/services';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @Component({
-  selector: 'app-store',
-  templateUrl: './store.component.html',
-  styleUrls: ['./store.component.scss']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
-export class StoreComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private storeService: StoreService,
+    private userService: UserService,
     private changeDetectorRef: ChangeDetectorRef,
     private helperService: HelperService
   ) { }
@@ -21,7 +21,7 @@ export class StoreComponent implements OnInit {
   limit = 10;
   total = 0;
   page = 1;
-  stores: Store[] = []
+  stores: User[] = []
   totalPages = 0
   totalPageSize = 0
   query = ''
@@ -29,9 +29,9 @@ export class StoreComponent implements OnInit {
     this.getPage(1);
   }
 
-  open(store: Store) {
-    const modelRef = this.modalService.open(CreateStoreComponent, { size: 'xl' });
-    modelRef.componentInstance.store = store;
+  open(store: any) {
+    const modelRef = this.modalService.open(CreateUserComponent, { size: 'xl' });
+    modelRef.componentInstance.user = store;
     modelRef.result.then(
       (result) => {
         if (result === 'form submit') {
@@ -46,16 +46,8 @@ export class StoreComponent implements OnInit {
     );
   }
 
-  getCity(store:Store){
-    return store.city ? typeof store.city === 'string' ? store.city : store.city.name : '';
-  }
-
-  getPincode(store:Store){
-    return store.pincode ? typeof store.pincode === 'string' ? store.pincode : store.pincode.pincode : '';
-  }
-
   getPage(page: any) {
-    this.storeService.getAll(page, this.limit, this.query).subscribe(response => {
+    this.userService.getAll(page, this.limit, this.query).subscribe(response => {
       this.total = response.total
       this.page = page
       this.stores = response.data
@@ -74,10 +66,11 @@ export class StoreComponent implements OnInit {
     }
     this.helperService.confirmSwal(alertData).subscribe(confirm => {
       if (confirm) {
-        this.storeService.delete(id).subscribe(response => {
+        this.userService.delete(id).subscribe(response => {
           this.getPage(1);
         })
       }
     })
   }
+
 }

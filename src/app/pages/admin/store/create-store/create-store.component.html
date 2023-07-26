@@ -37,7 +37,43 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-3 form-group">
+             <!--begin::Form group-->
+  <div class="col-md-6 fv-row mb-7" >
+    <label class="form-label fw-bolder text-dark fs-6">City</label>
+
+    <select class="form-control form-control-lg" name="city" formControlName="city" [ngClass]="{'is-invalid': isFormSubmitted && form.city.errors}" (change)="cityChanged()">
+      <option value="">--Select City--</option>
+      <option *ngFor="let city of cities" [value]="city._id">{{city.name}}</option>
+      <!-- <option value="doc2">doc2</option>
+      <option value="doc3">doc3</option> -->
+    </select>
+                    <div *ngIf="isFormSubmitted && form.city.errors?.required" class="invalid-feedback">
+                        City is required.
+                    </div>
+  </div>
+  <!--end::Form group-->
+
+  <!--begin::Form group-->
+  <div class="col-md-6 fv-row mb-7" >
+    <label class="form-label fw-bolder text-dark fs-6">Pincode</label>
+    <select class="form-control form-control-lg" name="pincode" formControlName="pincode" [ngClass]="{'is-invalid': isFormSubmitted && form.pincode.errors}">
+      <option value="">--Select City--</option>
+      <option *ngFor="let pincode of pincodes" [value]="pincode._id">{{pincode.pincode}}</option>
+      <!-- <option value="doc2">doc2</option>
+        <option value="doc3">doc3</option> -->
+    </select>
+    <!-- <input class="form-control form-control-lg form-control-solid" type="text" name="pincode" formControlName="pincode"
+      placeholder="pincode" autocomplete="off" [ngClass]="{
+        'is-invalid': registrationForm.controls['city'].invalid,
+        'is-valid': registrationForm.controls['city'].valid
+      }" /> -->
+      <div *ngIf="isFormSubmitted && form.pincode.errors?.required" class="invalid-feedback">
+        Pincode is required.
+    </div>
+  </div>
+  <!--end::Form group-->
+
+            <!-- <div class="col-md-6 mb-3 form-group">
                 <label for="city" class="col-form-label">
                     City
                 </label>
@@ -48,9 +84,9 @@
                         City is required.
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-md-6 mb-3 form-group">
+            <!-- <div class="col-md-6 mb-3 form-group">
                 <label for="pincode" class="col-form-label">
                     Pincode
                 </label>
@@ -64,7 +100,7 @@
                         Please enter valid pincode.
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="col-md-12 b-3 form-group">
                 <label for="address" class="col-form-label">

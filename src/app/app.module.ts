@@ -16,6 +16,7 @@ import { FakeAPIService } from './_fake/fake-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './services';
 import { AddHeaderInterceptor } from './helpers/AddHeaderInterceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 // #fake-end#
 
 function appInitializer(authService: AuthService) {
@@ -48,12 +49,14 @@ function appInitializer(authService: AuthService) {
     FormsModule, ReactiveFormsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       multi: true,
       deps: [AuthService],
-    }
+    },
+    //
   ],
   bootstrap: [AppComponent],
 })

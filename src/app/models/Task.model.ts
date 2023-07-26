@@ -13,6 +13,7 @@ export interface Task {
     taskDate: string,
     image1?: string,
     image2?: string,
+    status?: string,
 }
 
 export interface TaskPagination {
