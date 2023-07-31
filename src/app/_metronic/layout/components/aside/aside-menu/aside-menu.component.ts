@@ -17,7 +17,7 @@ export class AsideMenuComponent implements OnInit {
     { name: 'Document Type', link: '/document-type', icon: './assets/media/icons/duotune/general/gen020.svg' },
     { name: 'Skill', link: '/skill', icon: './assets/media/icons/duotune/general/gen021.svg' },
     { name: 'City', link: '/city', icon: './assets/media/icons/duotune/general/gen024.svg' },
-    { name: 'Pincode', link: '/pincode', icon: './assets/media/icons/duotune/general/gen025.svg' },
+    { name: 'Zipcode', link: '/pincode', icon: './assets/media/icons/duotune/general/gen025.svg' },
     { name: 'Manager', link: '/user', icon: './assets/media/icons/duotune/general/gen026.svg' },
   ]
 

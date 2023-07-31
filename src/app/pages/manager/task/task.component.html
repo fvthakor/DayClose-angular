@@ -9,6 +9,13 @@
                                 (keyup)="getPage(1)">
                         </div>
                     </div>
+                    <div class="p-2">
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="Select date" [(ngModel)]="taskDate"
+                                (change)="getPage(1)">
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -32,7 +39,7 @@
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({category: '', subCategory: '', detail: '', employee: '', taskDate: ''})">Crate
+            <button class="btn btn-primary btn-sm" (click)="open({taskTime: '', priority: '',  category: '', subCategory: '', detail: '', employee: '', taskDate: ''})">Crate
                 Task</button>
         </div>
     </div>
@@ -50,6 +57,8 @@
                         <th class="min-w-150px">Subcategory</th>
                         <th class="min-w-150px">Status</th>
                         <th class="min-w-150px">Task Detail</th>
+                        <th class="min-w-150px">Date Time</th>
+                        <th class="min-w-150px">Priority</th>
                         <th class="min-w-150px">Employee</th>
                         <th class="min-w-150px">Images</th>
                         
@@ -81,6 +90,18 @@
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{task.detail}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                <!-- {{getCategoryName(category)}} -->
+                                {{getDate(task.taskDate)}} {{getTime(task.taskTime)}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                                <!-- {{getCategoryName(category)}} -->
+                                {{task.priority}}
                             </span>
                         </td>
                         <td>

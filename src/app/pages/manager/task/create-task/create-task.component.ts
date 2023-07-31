@@ -49,7 +49,9 @@ export class CreateTaskComponent implements OnInit {
       employee: ['', [Validators.required]],
       taskDate: ['', [Validators.required]],
       image1: [''],
-      image2: ['']
+      image2: [''],
+      taskTime: [''],
+      priority: ['', [Validators.required]],
     });
   }
 

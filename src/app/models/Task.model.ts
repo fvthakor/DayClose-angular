@@ -11,9 +11,12 @@ export interface Task {
     detail: string,
     employee: string | User,
     taskDate: string,
+    priority: string,
+    taskTime: string,
     image1?: string,
     image2?: string,
     status?: string,
+    
 }
 
 export interface TaskPagination {

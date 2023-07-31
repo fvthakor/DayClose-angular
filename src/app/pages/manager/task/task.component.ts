@@ -30,6 +30,7 @@ export class TaskComponent implements OnInit {
   totalPages = 0
   totalPageSize = 0
   query = ''
+  taskDate= '';
   ngOnInit(): void {
     this.getPage(1);
     this.user$ = this.auth.currentUserSubject.asObservable();
@@ -63,7 +64,7 @@ export class TaskComponent implements OnInit {
   }
 
   getPage(page: any) {
-    this.taskService.getAll(page, this.limit, this.query).subscribe(response => {
+    this.taskService.getAll(page, this.limit, this.query, this.taskDate).subscribe(response => {
       console.log(response);
       this.total = response.total
       this.page = page
@@ -101,6 +102,13 @@ export class TaskComponent implements OnInit {
         })
       }
     })
+  }
+
+  getDate(date:string){
+    return moment(date).format('DD-MM-YYYY')
+  }
+  getTime(time:string){
+    return time ? time : '00:00'
   }
 
 }

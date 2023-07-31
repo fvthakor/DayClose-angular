@@ -17,7 +17,11 @@
                     <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
                     <select class="form-control" id="taskStatus" name="taskStatus" formControlName="taskStatus">
                         <option value="">Select Status</option>
-                        <option *ngFor="let category of taskdata"    value="{{category._id}}" selected>{{category.status}}</option>
+                        <option value="pending">pending</option>
+                        <option value="complete">complete</option>
+                        <option value="not_now">not_now</option>
+                        <option value="assined_to_other">assined_to_other</option>
+                        <!-- <option *ngFor="let category of taskdata"    value="{{category._id}}" selected>{{category.status}}</option> -->
                     </select>
                     <div *ngIf="isFormSubmitted && form.taskStatus.errors?.required" class="invalid-feedback">
                         detail is required.

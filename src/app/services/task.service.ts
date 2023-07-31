@@ -24,8 +24,8 @@ export class TaskService {
     }));
   }
 
-  getAll(page: number, limit: number, query: string): Observable<TaskPagination> {
-    return this.http.get<TaskPagination>(`${environment.apiUrl}/${this.route}?page=${page}&limit=${limit}&query=${query}`, { withCredentials: true })
+  getAll(page: number, limit: number, query: string, taskDate:string): Observable<TaskPagination> {
+    return this.http.get<TaskPagination>(`${environment.apiUrl}/${this.route}?page=${page}&limit=${limit}&query=${query}&taskDate=${taskDate}`, { withCredentials: true })
   }
 
   // getAllData(): Observable<Task[]> {

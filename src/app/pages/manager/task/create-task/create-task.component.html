@@ -10,17 +10,17 @@
 
             
             <div class="col-md-12 mb-3 form-group">
-                <label for="name" class="col-form-label lable-right">
+                <label for="category" class="col-form-label lable-right">
                      Category
                 </label>
                 <div>
                     <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
-                    <select class="form-control" id="" name="category" formControlName="category" (change)="getSubcategory()" >
+                    <select class="form-control" id="category" name="category" formControlName="category" (change)="getSubcategory()" >
                         <option value="">Select Category</option>
                         <option *ngFor="let category of categories"    value="{{category._id}}" selected>{{category.category}}</option>
                     </select>
                     <div *ngIf="isFormSubmitted && form.category.errors?.required" class="invalid-feedback">
-                        detail is required.
+                        Category is required.
                     </div>
                 </div>
             </div>
@@ -60,10 +60,41 @@
                     <input type="date" value="angForm.value.taskDate" class="form-control" name="taskDate" formControlName="taskDate"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.taskDate.errors}" id="taskDate">
                     <div *ngIf="isFormSubmitted && form.taskDate.errors?.required" class="invalid-feedback">
-                        detail is required.
+                        Date is required.
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 mb-3 form-group">
+                <label for="taskTime" class="col-form-label lable-right">
+                    Time
+                </label>
+                <div>
+                    <input type="time" value="angForm.value.taskDate" class="form-control" name="taskTime" formControlName="taskTime"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.taskTime.errors}" id="taskTime">
+                    <div *ngIf="isFormSubmitted && form.taskTime.errors?.required" class="invalid-feedback">
+                        Time is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Priority
+                </label>
+                <div>
+                    <!-- <input type="text"  class="form-control" name="mainCategory" formControlName="mainCategory"> -->
+                    <select class="form-control" id="" name="priority" formControlName="priority" >
+                        <option value="">--Select priority--</option>
+                        <option value="low">Low</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="high">High</option>
+                    </select>
+                    <div *ngIf="isFormSubmitted && form.priority.errors?.required" class="invalid-feedback">
+                        Priority is required.
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
                     Employee

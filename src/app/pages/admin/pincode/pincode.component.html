@@ -15,7 +15,7 @@
         <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Pincode</li>
+                <li class="breadcrumb-item active" aria-current="page">Zipcode</li>
             </ol>
         </div>
 
@@ -28,11 +28,11 @@
     <!-- begin::Header -->
     <div class="card-header border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder fs-3 mb-1">Pincode</span>
+            <span class="card-label fw-bolder fs-3 mb-1">Zipcode</span>
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({pincode: '', city: ''})">Crate Pincode</button>
+            <button class="btn btn-primary btn-sm" (click)="open({pincode: '', city: ''})">Crate Zipcode</button>
         </div>
     </div>
     <!-- end::Header -->
@@ -45,7 +45,7 @@
                 <!-- begin::Table head -->
                 <thead>
                     <tr class="fw-bolder text-muted">
-                        <th class="min-w-150px">Pincode</th>
+                        <th class="min-w-150px">Zipcode</th>
                         <th class="min-w-150px">City</th>
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
