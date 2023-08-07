@@ -39,10 +39,10 @@ const Routing: Routes = [
     path: 'category',
     loadChildren: () => import('./manager/category/category.module').then((m) => m.CategoryModule)
   },
-  {
-    path: 'task-status',
-    loadChildren: () => import('./manager/task-status/task-status.module').then((m) => m.TaskStatusModule)
-  },
+  // {
+  //   path: 'task-status',
+  //   loadChildren: () => import('./manager/task-status/task-status.module').then((m) => m.TaskStatusModule)
+  // },
   {
     path: 'task',
     loadChildren: () => import('./manager/task/task.module').then((m) => m.TaskModule)
