@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { City, Skill, Store, Pincode, DocumentType, User } from 'src/app/models';
+import { City, Skill, Store, Pincode, DocumentType, User, County } from 'src/app/models';
 import { AuthService, ConfirmPasswordValidator, UserModel, UserType } from 'src/app/modules/auth';
-import { CityService, DocumentService, SkillService, StoreService, UserService } from 'src/app/services';
+import { CityService, CountyService, DocumentService, SkillService, StoreService, UserService } from 'src/app/services';
 
 @Component({
   selector: 'app-create-user',
@@ -38,6 +38,7 @@ export class CreateUserComponent implements OnInit {
     private auth: AuthService,
     private userService: UserService,
     public activeModal: NgbActiveModal,
+    private countyService: CountyService
   ) { 
     this.isLoading$ = this.authService.isLoading$;
     // redirect to home if already logged in
@@ -51,12 +52,11 @@ export class CreateUserComponent implements OnInit {
   stores: Store[] = [];
   ngOnInit(): void {
     this.initForm();
-  this.getCities();
+    this.getCounties();
     this.getDocumentType();
     this.getSkills();
     this.getStores();
     this.user$ = this.auth.currentUserSubject.asObservable();
-    this.registrationForm.patchValue(this.user);
   }
 
   getCity(user:any){
@@ -64,7 +64,8 @@ export class CreateUserComponent implements OnInit {
       city: user.city,
       pincode: user.pincode,
       address: user.address,
-      store: user.store
+      store: user.store,
+      county: user.county
     });
     return '';
   }
@@ -86,6 +87,7 @@ export class CreateUserComponent implements OnInit {
         phoneNumber: ['', Validators.compose([Validators.required]),],
         email: ['', Validators.compose([Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(320),]),],
         address: ['', Validators.compose([Validators.required]),],
+        county: ['', Validators.compose([Validators.required]),],
         city: ['', Validators.compose([Validators.required]),],
         pincode: ['', Validators.compose([Validators.required]),],
         password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
@@ -127,9 +129,19 @@ export class CreateUserComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
     });
   }
+  counties: County[] = [];
+  getCounties() {
+    this.countyService.getAllData().subscribe(response => {
+      this.counties = response;
+      this.changeDetectorRef.detectChanges();
+      if(this.registrationForm.value.county && this.registrationForm.value.county !== ''){
+        this.getCities();
+      }
+    })
+  }
 
   getCities() {
-    this.cityService.getAllData().subscribe(response => {
+    this.cityService.getCountyWiseData(this.registrationForm.value.county).subscribe(response => {
       this.cities = response;
       this.changeDetectorRef.detectChanges();
       // console.log(this.cities);
@@ -137,7 +149,6 @@ export class CreateUserComponent implements OnInit {
   }
   pincodes: Pincode[] = []
   cityChanged() {
-    console.log(this.registrationForm.value.city);
     const cityFilters = this.cities.filter(item => item._id === this.registrationForm.value.city)
     this.pincodes = cityFilters.length > 0 && cityFilters[0].pincodes ? cityFilters[0].pincodes : [];
     this.changeDetectorRef.detectChanges();

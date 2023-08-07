@@ -1,41 +1,44 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { City } from 'src/app/models';
-import { CityService, HelperService } from 'src/app/services';
-import { AddCityComponent } from './add-city/add-city.component';
+import { Observable } from 'rxjs';
+import { Banner } from 'src/app/models';
+import { AuthService, UserType } from 'src/app/modules/auth';
+import { BannerService, HelperService } from 'src/app/services';
+import { AddBannerComponent } from './add-banner/add-banner.component';
+import * as moment from 'moment';
 
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.scss']
+  selector: 'app-banner',
+  templateUrl: './banner.component.html',
+  styleUrls: ['./banner.component.scss']
 })
-export class CityComponent implements OnInit {
+export class BannerComponent implements OnInit {
 
   constructor(
+    private auth: AuthService,
     private modalService: NgbModal,
-    private cityService: CityService,
+    private bannerService: BannerService,
     private changeDetectorRef: ChangeDetectorRef,
     private helperService: HelperService
   ) { }
 
+  user$: Observable<UserType>;
   limit = 10;
   total = 0;
   page = 1;
-  cities: City[] = []
+  banners: Banner[] = []
   totalPages = 0
   totalPageSize = 0
   query = ''
-
+  
   ngOnInit(): void {
     this.getPage(1);
+    this.user$ = this.auth.currentUserSubject.asObservable();
   }
 
-  open(city: City) {
-    const modelRef = this.modalService.open(AddCityComponent);
-    modelRef.componentInstance.city = {
-      ...city,
-      county: typeof city.county === 'string' ? city.county : city.county._id
-    };
+  open(banner: Banner) {
+    const modelRef = this.modalService.open(AddBannerComponent);
+    modelRef.componentInstance.banner = banner;
     modelRef.result.then(
       (result) => {
         if (result === 'form submit') {
@@ -51,10 +54,11 @@ export class CityComponent implements OnInit {
   }
 
   getPage(page: any) {
-    this.cityService.getAll(page, this.limit, this.query).subscribe(response => {
+    this.bannerService.getAll(page, this.limit, this.query).subscribe(response => {
+      console.log(response);
       this.total = response.total
       this.page = page
-      this.cities = response.data
+      this.banners = response.data
       const totalPages = Math.ceil(response.total / this.limit);
       this.totalPages = totalPages;
       this.totalPageSize = totalPages * 10;
@@ -70,15 +74,11 @@ export class CityComponent implements OnInit {
     }
     this.helperService.confirmSwal(alertData).subscribe(confirm => {
       if (confirm) {
-        this.cityService.delete(id).subscribe(response => {
+        this.bannerService.delete(id).subscribe(response => {
           this.getPage(1);
         })
       }
     })
-  }
-
-  getCountyName(city: City) {
-    return typeof city.county !== 'string' ? city.county.name : city.county;
   }
 
 }

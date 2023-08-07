@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="btn-close btn-danger text-white" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form method="post" [formGroup]="angForm" novalidate (submit)="submitForm()">
+    <div class="modal-body">
+        <!-- <p>Hello, {{ name }}!</p> -->
+        <div class="row">
+            
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Title
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="title" formControlName="title"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.title.errors}" id="detail">
+                    <div *ngIf="isFormSubmitted && form.title.errors?.required" class="invalid-feedback">
+                        Title is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Text
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="text" formControlName="text"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.text.errors}" id="detail">
+                    <div *ngIf="isFormSubmitted && form.text.errors?.required" class="invalid-feedback">
+                        Text is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3 form-group">
+                <label for="name" class="col-form-label lable-right">
+                    Banner
+                </label>
+                <div>
+                    <input type="file" class="form-control" name="banner" formControlName="banner"
+                        [ngClass]="{'is-invalid': isFormSubmitted && form.banner.errors}" id="image1" (change)="onFileSelected($event, 'banner')">
+                    <div *ngIf="isFormSubmitted && form.banner.errors?.required" class="invalid-feedback">
+                        Banner is required.
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-12 mb-3 form-group">
+                <label for="type" class="col-form-label lable-right">
+                     Type
+                </label>
+                <div>
+                    <select class="form-control" id="type" name="type" formControlName="type" >
+                        <option value="">Select Category</option>
+                        <option value="banner">Banner</option>
+                        <option value="text">Text</option>
+                        <option value="link">Link</option>
+                    </select>
+                    <div *ngIf="isFormSubmitted && form.type.errors?.required" class="invalid-feedback">
+                        Type is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3 form-group" *ngIf="angForm.value.type === 'link'">
+                <label for="name" class="col-form-label lable-right">
+                    Link
+                </label>
+                <div>
+                    <input type="link" class="form-control" name="link" formControlName="link">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">{{buttonText}}</button>
+        <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+</form>

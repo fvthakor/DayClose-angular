@@ -1,5 +1,9 @@
 <div *ngIf="user$ | async as _user">
-  {{getCity(_user)}}
+  <ng-container *ngIf="_user.role === 'manager'">
+    {{getCity(_user)}}
+  </ng-container>
+  
+
 <form class="form row fv-plugins-bootstrap5 fv-plugins-framework p-8" novalidate="novalidate"
   id="" [formGroup]="registrationForm" (ngSubmit)="submit()">
   <!--begin::Heading-->
@@ -198,6 +202,28 @@
   </div>
   <!--end::Form group-->
 
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
+    <label class="form-label fw-bolder text-dark fs-6">County</label>
+
+    <select class="form-control form-control-lg form-control-solid" name="county" formControlName="county" [ngClass]="{
+    'is-invalid': registrationForm.controls['county'].invalid,
+    'is-valid': registrationForm.controls['county'].valid
+  }" (change)="getCities()">
+      <option value="">--Select County--</option>
+      <option *ngFor="let city of counties" [value]="city._id">{{city.name}}</option>
+      <!-- <option value="doc2">doc2</option>
+      <option value="doc3">doc3</option> -->
+    </select>
+    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'required',
+        message: 'county is required',
+        control: registrationForm.controls['county']
+      }"></ng-container>
+  </div>
+  <!--end::Form group-->
+
   <!--begin::Form group-->
   <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
     <label class="form-label fw-bolder text-dark fs-6">City</label>
@@ -208,8 +234,7 @@
   }" (change)="cityChanged()">
       <option value="">--Select City--</option>
       <option *ngFor="let city of cities" [value]="city._id">{{city.name}}</option>
-      <!-- <option value="doc2">doc2</option>
-      <option value="doc3">doc3</option> -->
+     
     </select>
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'required',
@@ -377,7 +402,7 @@
   <!--begin::Form group-->
   <div class="col-md-4 fv-row mb-7">
     <label class="form-label fw-bolder text-dark fs-6">Document Front Image</label>
-    <input class="form-control form-control-lg form-control-solid" type="file" name="documentFront"
+    <input class="form-control form-control-lg form-control-solid" type="file" name="documentFront" accept="image/png, image/jpeg"
       formControlName="documentFront" placeholder="pincode" autocomplete="off" [ngClass]="{
         'is-invalid': registrationForm.controls['documentFront'].invalid,
         'is-valid': registrationForm.controls['documentFront'].valid
@@ -393,7 +418,7 @@
   <!--begin::Form group-->
   <div class="col-md-4 fv-row mb-7">
     <label class="form-label fw-bolder text-dark fs-6">Document Back Image</label>
-    <input class="form-control form-control-lg form-control-solid" type="file" name="documentBack"
+    <input class="form-control form-control-lg form-control-solid" type="file" name="documentBack" accept="image/png, image/jpeg"
       formControlName="documentBack" placeholder="Document Back Image" autocomplete="off" [ngClass]="{
         'is-invalid': registrationForm.controls['documentBack'].invalid,
         'is-valid': registrationForm.controls['documentBack'].valid
@@ -462,7 +487,7 @@
   <!--begin::Form group-->
   <div class="col-md-4 fv-row mb-7">
     <label class="form-label fw-bolder text-dark fs-6">Employee Photo</label>
-    <input class="form-control form-control-lg form-control-solid" type="file" name="employeePhoto"
+    <input class="form-control form-control-lg form-control-solid" type="file" name="employeePhoto" accept="image/png, image/jpeg"
       formControlName="employeePhoto" placeholder="Employee Photo" autocomplete="off" [ngClass]="{
         'is-invalid': registrationForm.controls['employeePhoto'].invalid,
         'is-valid': registrationForm.controls['employeePhoto'].valid

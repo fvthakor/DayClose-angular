@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { City } from 'src/app/models';
-import { CityService } from 'src/app/services';
+import { City, County } from 'src/app/models';
+import { CityService, CountyService } from 'src/app/services';
 
 @Component({
   selector: 'app-add-city',
@@ -16,7 +16,8 @@ export class AddCityComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private cityService: CityService
+    private cityService: CityService,
+    private countyService: CountyService
   ) {
     this.createForm();
   }
@@ -25,12 +26,14 @@ export class AddCityComponent implements OnInit {
     this.angForm.patchValue(this.city);
     this.title = this.city._id ? 'Edit City' : 'Create City';
     this.buttonText = this.city._id ? 'Update' : 'Create';
+    this.getCounty();
   }
 
   angForm: FormGroup;
   createForm() {
     this.angForm = this.fb.group({
       name: ['', [Validators.required]],
+      county: ['', [Validators.required]]
     });
   }
 
@@ -54,6 +57,13 @@ export class AddCityComponent implements OnInit {
 
   get form() {
     return this.angForm.controls;
+  }
+
+  cities: County[] = []
+  getCounty() {
+    this.countyService.getAllData().subscribe(response => {
+      this.cities = response;
+    })
   }
 
 }

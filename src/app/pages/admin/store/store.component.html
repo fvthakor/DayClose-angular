@@ -37,7 +37,8 @@
                 number: '',
                 address: '',
                 city: '',
-                pincode: ''
+                pincode: '',
+                county: ''
               })">Crate Store</button>
         </div>
     </div>
@@ -53,6 +54,7 @@
                     <tr class="fw-bolder text-muted">
                         <th class="min-w-150px">Store Name</th>
                         <th class="min-w-140px">Store Number</th>
+                        <th class="min-w-120px">County</th>
                         <th class="min-w-120px">City</th>
                         <th class="min-w-120px">Address</th>
                         <th class="min-w-120px">Pincode</th>
@@ -75,6 +77,12 @@
                                 {{store.number}}
                             </span>
                             <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: PH</span> -->
+                        </td>
+                        <td>
+                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                                {{getCounty(store)}}
+                            </span>
+                            <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: Paid</span> -->
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">

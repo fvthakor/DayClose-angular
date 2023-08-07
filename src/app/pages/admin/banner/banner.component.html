@@ -9,12 +9,7 @@
                                 (keyup)="getPage(1)">
                         </div>
                     </div>
-                    <div class="p-2">
-                        <div class="form-group">
-                            <input type="date" class="form-control" placeholder="Select date" [(ngModel)]="taskDate"
-                                (change)="getPage(1)">
-                        </div>
-                    </div>
+                    
                     
                 </div>
             </div>
@@ -22,7 +17,7 @@
         <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Task</li>
+                <li class="breadcrumb-item active" aria-current="page">Banner</li>
             </ol>
         </div>
 
@@ -35,15 +30,13 @@
     <!-- begin::Header -->
     <div class="card-header border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder fs-3 mb-1">Task</span>
+            <span class="card-label fw-bolder fs-3 mb-1">Banner</span>
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
-
-        <div class="card-toolbar" *ngIf="user$ | async as _user">
-            <button *ngIf="_user.role === 'manager'" class="btn btn-primary btn-sm" (click)="open({taskTime: '', priority: '',  category: '', subCategory: '', detail: '', employee: '', taskDate: ''})">Crate
-                Task</button>
+        <div class="card-toolbar">
+            <button class="btn btn-primary btn-sm" (click)="open({title: '', text: '',  banner: '', type: 'banner', link: ''})">Crate
+                Banner</button>
         </div>
-
     </div>
     <!-- end::Header -->
     <!-- begin::Body -->
@@ -55,14 +48,13 @@
                 <!-- begin::Table head -->
                 <thead>
                     <tr class="fw-bolder text-muted">
-                        <th class="min-w-150px">Category</th>
-                        <th class="min-w-150px">Subcategory</th>
-                        <th class="min-w-150px">Status</th>
-                        <th class="min-w-150px">Task Detail</th>
-                        <th class="min-w-150px">Date Time</th>
-                        <th class="min-w-150px">Priority</th>
-                        <th class="min-w-150px">Employee</th>
-                        <th class="min-w-150px">Images</th>
+                        <th class="min-w-150px">Title</th>
+                        <th class="min-w-150px">Text</th>
+                        <th class="min-w-150px">Banner</th>
+                        <th class="min-w-150px">Type</th>
+                        <th class="min-w-150px">Link</th>
+                        
+                        <!-- <th class="min-w-150px">Images</th> -->
                         
                         <th class="min-w-100px text-end">Actions</th>
                     </tr>
@@ -71,64 +63,45 @@
                 <!-- begin::Table body -->
                 <tbody>
                     <tr
-                        *ngFor="let task of tasks | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
+                        *ngFor="let banner of banners | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{getCategoryName(task)}}
+                                {{banner.title}}
                             </span>
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{getsubCategoryName(task)}}
-                            </span>
-                        </td>
-                        <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                {{task.status}}
+                                {{banner.text}}
                             </span>
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{task.detail}}
+                                <img *ngIf="banner.banner" [src]="banner.banner" height="50" style="margin: 5px;" />
                             </span>
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{getDate(task.taskDate)}} {{getTime(task.taskTime)}}
+                                {{banner.type}}
                             </span>
                         </td>
                         <td>
                             <span class="text-dark fw-bolder text-hover-primary fs-6">
                                 <!-- {{getCategoryName(category)}} -->
-                                {{task.priority}}
+                                {{banner.link}}
                             </span>
                         </td>
-                        <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                {{getEmployeeName(task)}}
-                            </span>
-                        </td>
-                        <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
-                                <!-- {{getCategoryName(category)}} -->
-                                <img *ngIf="task.image1" [src]="task.image1" height="50" style="margin: 5px;" />
-                                <img *ngIf="task.image2" [src]="task.image2" height="50" style="margin: 5px;" />
-                            </span>
-                        </td>
-                        <td class="text-end" *ngIf="user$ | async as _user">
-                            <a class="btn btn-icon btn-light-primary btn-sm me-1" routerLink="/task/{{task._id}}">
-                                <span [inlineSVG]="'./assets/media/icons/duotune/art/art006.svg'"
-                                class="svg-icon svg-danger svg-icon-3"></span>
-                            </a>
-                            <button *ngIf="_user.role === 'manager'" (click)="open(task)" class="btn btn-icon btn-light-primary btn-sm me-1">
+                       
+                        
+                        <td class="text-end">
+                            
+                            <button (click)="open(banner)" class="btn btn-icon btn-light-primary btn-sm me-1">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
                                     class="svg-icon svg-icon-3"></span>
                             </button>
-                            <button *ngIf="_user.role === 'manager'" (click)="delete(task._id ? task._id : '')"
+                            <button (click)="delete(banner._id ? banner._id : '')"
                                 class="btn btn-icon btn-light-danger btn-sm">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
                                     class="svg-icon svg-danger svg-icon-3"></span>

@@ -47,4 +47,13 @@ export class CityService {
   delete(id: string): Observable<City> {
     return this.http.delete<{ data: City }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
   }
+
+
+  getCountyWiseData(countyId:string): Observable<City[]> {
+    return this.http.get<{ data: City[] }>(`${environment.apiUrl}/${this.route}/county-wise?county=${countyId}`, {
+      withCredentials: true
+    }).pipe(map(response => {
+      return response.data;
+    }));
+  }
 }

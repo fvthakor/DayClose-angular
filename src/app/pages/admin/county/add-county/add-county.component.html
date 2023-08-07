@@ -10,24 +10,6 @@
 
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
-                    County
-                </label>
-                <div>
-                    <select class="form-control" name="county" formControlName="county"
-                        [ngClass]="{'is-invalid': isFormSubmitted && form.county.errors}" id="pincode">
-                        <option value="">--Select County--</option>
-                        <option *ngFor="let city of cities" [value]="city._id">{{city.name}}</option>
-                    </select>
-                    <!-- <input type="text" class="form-control" name="pincode" formControlName="pincode"
-                        [ngClass]="{'is-invalid': isFormSubmitted && form.pincode.errors}" id="pincode"> -->
-                    <div *ngIf="isFormSubmitted && form.city.errors?.required" class="invalid-feedback">
-                        City is required.
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 mb-3 form-group">
-                <label for="name" class="col-form-label lable-right">
                     Name
                 </label>
                 <div>

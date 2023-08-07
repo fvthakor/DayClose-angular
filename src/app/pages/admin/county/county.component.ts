@@ -1,41 +1,37 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { City } from 'src/app/models';
-import { CityService, HelperService } from 'src/app/services';
-import { AddCityComponent } from './add-city/add-city.component';
+import { County } from 'src/app/models';
+import { CountyService, HelperService } from 'src/app/services';
+import { AddCountyComponent } from './add-county/add-county.component';
 
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.scss']
+  selector: 'app-county',
+  templateUrl: './county.component.html',
+  styleUrls: ['./county.component.scss']
 })
-export class CityComponent implements OnInit {
-
-  constructor(
-    private modalService: NgbModal,
-    private cityService: CityService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private helperService: HelperService
-  ) { }
-
+export class CountyComponent implements OnInit {
   limit = 10;
   total = 0;
   page = 1;
-  cities: City[] = []
+  cities: County[] = []
   totalPages = 0
   totalPageSize = 0
   query = ''
+
+  constructor(
+    private modalService: NgbModal,
+    private countyService: CountyService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private helperService: HelperService
+  ) { }
 
   ngOnInit(): void {
     this.getPage(1);
   }
 
-  open(city: City) {
-    const modelRef = this.modalService.open(AddCityComponent);
-    modelRef.componentInstance.city = {
-      ...city,
-      county: typeof city.county === 'string' ? city.county : city.county._id
-    };
+  open(county: County) {
+    const modelRef = this.modalService.open(AddCountyComponent);
+    modelRef.componentInstance.county = county;
     modelRef.result.then(
       (result) => {
         if (result === 'form submit') {
@@ -51,7 +47,7 @@ export class CityComponent implements OnInit {
   }
 
   getPage(page: any) {
-    this.cityService.getAll(page, this.limit, this.query).subscribe(response => {
+    this.countyService.getAll(page, this.limit, this.query).subscribe(response => {
       this.total = response.total
       this.page = page
       this.cities = response.data
@@ -70,15 +66,11 @@ export class CityComponent implements OnInit {
     }
     this.helperService.confirmSwal(alertData).subscribe(confirm => {
       if (confirm) {
-        this.cityService.delete(id).subscribe(response => {
+        this.countyService.delete(id).subscribe(response => {
           this.getPage(1);
         })
       }
     })
-  }
-
-  getCountyName(city: City) {
-    return typeof city.county !== 'string' ? city.county.name : city.county;
   }
 
 }

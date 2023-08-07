@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { City, Pincode, Store } from 'src/app/models';
-import { CityService, StoreService } from 'src/app/services';
+import { City, County, Pincode, Store } from 'src/app/models';
+import { CityService, CountyService, StoreService } from 'src/app/services';
 
 @Component({
   selector: 'app-create-store',
@@ -14,12 +14,14 @@ export class CreateStoreComponent implements OnInit {
   title = 'Create Store'
   buttonText = 'Create'
   cities: City[] = [];
+  counties: County[] = [];
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private StoreService: StoreService,
     private cityService: CityService,
     private changeDetectorRef: ChangeDetectorRef,
+    private countyService: CountyService
   ) {
     this.createForm();
   }
@@ -28,7 +30,8 @@ export class CreateStoreComponent implements OnInit {
     this.angForm.patchValue(this.store);
     this.title = this.store._id ? 'Edit Store' : 'Create Store';
     this.buttonText = this.store._id ? 'Update' : 'Create';
-    this.getCities();                 
+    //this.getCities();        
+    this.getCounties();         
   }
 
   angForm: FormGroup;
@@ -37,6 +40,7 @@ export class CreateStoreComponent implements OnInit {
       name: ['', [Validators.required]],
       number: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
       address: ['', [Validators.required]],
+      county: ['', [Validators.required]],
       city: ['', [Validators.required]],
       pincode: ['', [Validators.required]],
     });
@@ -65,12 +69,23 @@ export class CreateStoreComponent implements OnInit {
   }
 
   getCities() {
-    this.cityService.getAllData().subscribe(response => {
+    this.cityService.getCountyWiseData(this.angForm.value.county).subscribe(response => {
       this.cities = response;
       this.changeDetectorRef.detectChanges();
       // console.log(this.cities);
     })
   }
+
+  getCounties() {
+    this.countyService.getAllData().subscribe(response => {
+      this.counties = response;
+      this.changeDetectorRef.detectChanges();
+      if(this.angForm.value.county && this.angForm.value.county !== ''){
+        this.getCities();
+      }
+    })
+  }
+
   pincodes: Pincode[] = []
   cityChanged() {
     //console.log(this.angForm.value.city);

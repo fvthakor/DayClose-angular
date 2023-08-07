@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Task, TaskPagination } from '../models';
+import { Task, TaskCount, TaskPagination } from '../models';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
@@ -42,5 +42,9 @@ export class TaskService {
 
   delete(id: string): Observable<Task> {
     return this.http.delete<{ data: Task }>(`${environment.apiUrl}/${this.route}/${id}`, { withCredentials: true }).pipe(map(response => response.data))
+  }
+
+  getTodayTaskCount(): Observable<TaskCount> {
+    return this.http.get<{ data: TaskCount }>(`${environment.apiUrl}/${this.route}/task-count`, { withCredentials: true }).pipe(map(response => response.data))
   }
 }

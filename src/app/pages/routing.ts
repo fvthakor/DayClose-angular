@@ -7,6 +7,14 @@ const Routing: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
+    path: 'banner',
+    loadChildren: () => import('./admin/banner/banner.module').then((m) => m.BannerModule)
+  },
+  {
+    path: 'county',
+    loadChildren: () => import('./admin/county/county.module').then((m) => m.CountyModule)
+  },
+  {
     path: 'store',
     loadChildren: () => import('./admin/store/store.module').then((m) => m.StoreModule)
   },

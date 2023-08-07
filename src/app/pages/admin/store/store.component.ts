@@ -50,6 +50,11 @@ export class StoreComponent implements OnInit {
     return store.city ? typeof store.city === 'string' ? store.city : store.city.name : '';
   }
 
+  getCounty(store:Store){
+    return store.county ? typeof store.county === 'string' ? store.county : store.county.name : '';
+
+  }
+
   getPincode(store:Store){
     return store.pincode ? typeof store.pincode === 'string' ? store.pincode : store.pincode.pincode : '';
   }

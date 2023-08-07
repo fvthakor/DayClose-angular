@@ -18,6 +18,7 @@ export class UserModel extends AuthModel {
 
   address: string;
   city: string;
+  county:string;
   pincode: string;
   documentType: string;
   documentNumber: string;

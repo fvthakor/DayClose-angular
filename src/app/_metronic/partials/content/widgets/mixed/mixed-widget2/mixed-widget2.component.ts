@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { getCSSVariableValue } from '../../../../../kt/_utils';
+import { TaskService } from 'src/app/services';
+import { TaskCount } from 'src/app/models';
 @Component({
   selector: 'app-mixed-widget2',
   templateUrl: './mixed-widget2.component.html',
@@ -10,7 +12,9 @@ export class MixedWidget2Component implements OnInit {
   @Input() chartHeight: string = '';
   chartOptions: any = {};
 
-  constructor() {}
+  constructor(
+    private taskService: TaskService
+  ) {}
 
   ngOnInit(): void {
     this.chartOptions = getChartOptions(
@@ -18,6 +22,13 @@ export class MixedWidget2Component implements OnInit {
       this.chartColor,
       this.strokeColor
     );
+    this.getTodayTask();
+  }
+  taskCount!: TaskCount;
+  getTodayTask(){
+    this.taskService.getTodayTaskCount().subscribe(response => {
+      this.taskCount = response;
+    })
   }
 }
 

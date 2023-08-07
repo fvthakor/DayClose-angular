@@ -114,7 +114,7 @@
                     Image 1
                 </label>
                 <div>
-                    <input type="file" class="form-control" name="image1" formControlName="image1"
+                    <input type="file" class="form-control"  accept="image/png, image/jpeg" name="image1" formControlName="image1"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.image1.errors}" id="image1" (change)="onFileSelected($event, 'image1')">
                     <div *ngIf="isFormSubmitted && form.image1.errors?.required" class="invalid-feedback">
                         Image 1 is required.
@@ -126,7 +126,7 @@
                     Image2
                 </label>
                 <div>
-                    <input type="file" class="form-control" name="image2" formControlName="image2"
+                    <input type="file" class="form-control" name="image2" formControlName="image2" accept="image/png, image/jpeg"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.image2.errors}" id="image2" (change)="onFileSelected($event, 'image2')">
                     <div *ngIf="isFormSubmitted && form.image2.errors?.required" class="invalid-feedback">
                         Image2 is required.

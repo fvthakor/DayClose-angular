@@ -1,7 +1,7 @@
-<div class="card-header border-0 py-5" [ngClass]="'bg-' + chartColor">
+<!-- <div class="card-header border-0 py-5" [ngClass]="'bg-' + chartColor">
   <h3 class="card-title fw-bolder text-white">Sales Statistics</h3>
   <div class="card-toolbar">
-    <!-- begin::Menu -->
+    
     <button
       type="button"
       class="
@@ -19,14 +19,15 @@
       ></span>
     </button>
     <app-dropdown-menu1></app-dropdown-menu1>
-    <!-- end::Menu -->
+   
   </div>
-</div>
+</div> -->
 <!-- end::Header -->
 <!-- begin::Body -->
 <div class="card-body p-0">
+  
   <!-- begin::Chart -->
-  <div
+  <!-- <div
     #chartRef
     class="mixed-widget-2-chart card-rounded-bottom"
     [ngClass]="'bg-' + chartColor"
@@ -46,10 +47,11 @@
       [markers]="chartOptions.markers"
       [plotOptions]="chartOptions.plotOptions"
     ></apx-chart>
-  </div>
+  </div> -->
   <!-- end::Chart -->
   <!-- begin::Stats -->
-  <div class="card-p mt-n20 position-relative">
+  <div class="card-p  position-relative">
+    <h3 style="margin-bottom: 15px;">Task By Today</h3> 
     <!-- begin::Row -->
     <div class="row g-0">
       <!-- begin::Col -->
@@ -58,7 +60,15 @@
           [inlineSVG]="'./assets/media/icons/duotune/general/gen032.svg'"
           class="svg-icon svg-icon-3x svg-icon-warning d-block my-2"
         ></span>
-        <a href="#" class="text-warning fw-bold fs-6"> Weekly Sales </a>
+        
+
+        <div class="d-flex justify-content-between">
+          <a href="javascript:void(0);"  class="text-warning fw-bold fs-6"> Pending Task </a>
+          <span>{{taskCount.pendingTask}}</span>
+        </div>
+
+
+        
       </div>
       <!-- end::Col -->
       <!-- begin::Col -->
@@ -67,7 +77,11 @@
           [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'"
           class="svg-icon svg-icon-3x svg-icon-primary d-block my-2"
         ></span>
-        <a href="#" class="text-primary fw-bold fs-6"> New Projects </a>
+
+        <div class="d-flex justify-content-between">
+          <a href="javascript:void(0);"  class="text-primary fw-bold fs-6">Assined To Other Task </a>
+          <span>{{taskCount.assinedToOtherTask}}</span>
+        </div>
       </div>
       <!-- end::Col -->
     </div>
@@ -80,7 +94,13 @@
           [inlineSVG]="'./assets/media/icons/duotune/abstract/abs027.svg'"
           class="svg-icon svg-icon-3x svg-icon-danger d-block my-2"
         ></span>
-        <a href="#" class="text-danger fw-bold fs-6 mt-2"> Item Orders </a>
+       
+
+        <div class="d-flex justify-content-between">
+          <a href="javascript:void(0);"  class="text-danger fw-bold fs-6"> Not Now Task </a>
+          <span>{{taskCount.notNowTask}}</span>
+        </div>
+
       </div>
       <!-- end::Col -->
       <!-- begin::Col -->
@@ -89,7 +109,13 @@
           [inlineSVG]="'./assets/media/icons/duotune/communication/com010.svg'"
           class="svg-icon svg-icon-3x svg-icon-success d-block my-2"
         ></span>
-        <a href="#" class="text-success fw-bold fs-6 mt-2"> Bug Reports </a>
+
+        <div class="d-flex justify-content-between">
+          <a href="javascript:void(0);"  class="text-success fw-bold fs-6"> Complated  Task </a>
+          <span>{{taskCount.completeTask}}</span>
+        </div>
+
+        
       </div>
       <!-- end::Col -->
     </div>
