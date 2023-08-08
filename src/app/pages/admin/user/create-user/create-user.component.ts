@@ -101,6 +101,8 @@ export class CreateUserComponent implements OnInit {
         remark1: [''],
         remark2: [''],
         employeePhoto: ['', Validators.compose([Validators.required])],
+        document1: [''],
+        document2: [''],
         // agree: [false, Validators.compose([Validators.required])],
       },
       {

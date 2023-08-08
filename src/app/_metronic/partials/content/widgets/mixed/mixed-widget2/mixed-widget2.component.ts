@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { getCSSVariableValue } from '../../../../../kt/_utils';
 import { TaskService } from 'src/app/services';
 import { TaskCount } from 'src/app/models';
@@ -13,7 +13,8 @@ export class MixedWidget2Component implements OnInit {
   chartOptions: any = {};
 
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -24,10 +25,11 @@ export class MixedWidget2Component implements OnInit {
     );
     this.getTodayTask();
   }
-  taskCount!: TaskCount;
+  taskCount: TaskCount;
   getTodayTask(){
     this.taskService.getTodayTaskCount().subscribe(response => {
       this.taskCount = response;
+      this.changeDetectorRef.detectChanges();
     })
   }
 }

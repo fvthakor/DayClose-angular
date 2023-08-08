@@ -501,26 +501,27 @@
   </div>
   <!--end::Form group-->
 
-  <!--begin::Form group-->
-  <!-- <div class="fv-row mb-10">
-    <div class="form-check form-check-custom form-check-solid">
-      <input id="kt_login_toc_agree" type="checkbox" formControlName="agree" name="agree" class="form-check-input" />
 
-      <label for="kt_login_toc_agree" class="form-check-label fw-bold text-gray-700 fs-6">
-        I Agree the&nbsp;<a href="https://keenthemes.com/metronic/?page=faq" target="_blank"
-          class="ms-1 link-primary">terms and conditions</a>.
-      </label>
-    </div>
-  </div> -->
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Document 1</label>
+    <input class="form-control form-control-lg form-control-solid" type="file" name="document1" 
+      formControlName="document1" placeholder="Document 1" autocomplete="off" (change)="onFileSelected($event, 'document1')" />
+  </div>
   <!--end::Form group-->
 
+
+  <!--begin::Form group-->
+  <div class="col-md-4 fv-row mb-7">
+    <label class="form-label fw-bolder text-dark fs-6">Document 2</label>
+    <input class="form-control form-control-lg form-control-solid" type="file" name="document2"
+      formControlName="document2" placeholder="Document 2" autocomplete="off" (change)="onFileSelected($event, 'document2')" />
+  </div>
+  <!--end::Form group-->
+
+
   <div class="d-flex flex-row-reverse">
-    <!-- <div class="p-2">
-      <a routerLink="/auth/login" type="button" id="kt_login_signup_form_cancel_button"
-        class="btn btn-lg btn-light-danger w-100 mb-5">
-        Cancel
-      </a>
-    </div> -->
+    
     <div class="p-2">
       <button type="submit" id="kt_sign_up_submit" [disabled]="
       registrationForm.invalid 
