@@ -65,8 +65,9 @@ export class CreateUserComponent implements OnInit {
       pincode: user.pincode,
       address: user.address,
       store: user.store,
-      county: user.county
+      county: user.county ? user.county : '64d1067bcfc33436a69df83d'
     });
+    console.log(this.registrationForm.value);
     return '';
   }
 
@@ -103,7 +104,7 @@ export class CreateUserComponent implements OnInit {
         employeePhoto: ['', Validators.compose([Validators.required])],
         document1: [''],
         document2: [''],
-        // agree: [false, Validators.compose([Validators.required])],
+        agree: [true, Validators.compose([Validators.required])],
       },
       {
         validator: ConfirmPasswordValidator.MatchPassword,

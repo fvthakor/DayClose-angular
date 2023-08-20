@@ -41,13 +41,14 @@ export class TaskComponent implements OnInit {
   }
 
   open(task: Task) {
+    console.log( moment(task.taskDate).format('DD-MM-YYYY'));
     const modelRef = this.modalService.open(CreateTaskComponent);
     modelRef.componentInstance.task = {
       ...task,
       category: typeof task.category === 'string' ? task.category : task.category?._id,
       subCategory: typeof task.subCategory === 'string' ? task.subCategory : task.subCategory?._id,
       employee: typeof task.employee === 'string' ? task.employee : task.employee._id,
-      taskDate: moment(task.taskDate).format('DD-MM-YYYY')
+      taskDate: moment(task.taskDate).format('YYYY-MM-DD')
     };
     modelRef.result.then(
       (result) => {
