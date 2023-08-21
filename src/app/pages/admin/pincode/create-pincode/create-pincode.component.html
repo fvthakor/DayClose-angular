@@ -10,13 +10,16 @@
 
             <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
-                    Pincode
+                    Zipcode
                 </label>
                 <div>
                     <input type="text" class="form-control" name="pincode" formControlName="pincode"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.pincode.errors}" id="pincode">
                     <div *ngIf="isFormSubmitted && form.pincode.errors?.required" class="invalid-feedback">
-                        Pincode is required.
+                        Zipcode is required.
+                    </div>
+                    <div *ngIf="isFormSubmitted && form.pincode.errors?.pattern" class="invalid-feedback">
+                        Please enter valid Zipcode.
                     </div>
                 </div>
             </div>

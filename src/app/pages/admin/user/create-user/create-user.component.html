@@ -183,6 +183,13 @@
         message: 'Mobile is required',
         control: registrationForm.controls['phoneNumber']
       }"></ng-container>
+
+      <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+        validation: 'pattern',
+        message: 'Mobile is invalid',
+        control: registrationForm.controls['phoneNumber']
+      }"></ng-container>
+
   </div>
   <!--end::Form group-->
 
@@ -246,12 +253,12 @@
 
   <!--begin::Form group-->
   <div class="col-md-4 fv-row mb-7" *ngIf="_user.role === 'admin'">
-    <label class="form-label fw-bolder text-dark fs-6">Pincode</label>
+    <label class="form-label fw-bolder text-dark fs-6">Zipcode</label>
     <select class="form-control form-control-lg form-control-solid" name="pincode" formControlName="pincode" [ngClass]="{
       'is-invalid': registrationForm.controls['pincode'].invalid,
       'is-valid': registrationForm.controls['pincode'].valid
     }">
-      <option value="">--Select City--</option>
+      <option value="">--Select Zipcode--</option>
       <option *ngFor="let pincode of pincodes" [value]="pincode._id">{{pincode.pincode}}</option>
       <!-- <option value="doc2">doc2</option>
         <option value="doc3">doc3</option> -->

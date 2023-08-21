@@ -55,7 +55,7 @@
                     <tr
                         *ngFor="let taskstatus of categories | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 {{taskstatus.status}}
                             </span>
                         </td>

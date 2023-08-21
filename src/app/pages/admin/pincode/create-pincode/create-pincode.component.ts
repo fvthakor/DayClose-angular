@@ -11,7 +11,7 @@ import { CityService, PincodeService } from 'src/app/services';
 })
 export class CreatePincodeComponent implements OnInit {
   @Input() pincode: Pincode;
-  title = 'Create Pincode'
+  title = 'Create Zipcode'
   buttonText = 'Create'
   constructor(
     public activeModal: NgbActiveModal,
@@ -26,14 +26,14 @@ export class CreatePincodeComponent implements OnInit {
   ngOnInit(): void {
     this.angForm.patchValue({ ...this.pincode, city: typeof this.pincode.city === 'string' ? this.pincode.city : this.pincode.city._id });
     this.getCity();
-    this.title = this.pincode._id ? 'Edit Pincode' : 'Create Pincode';
+    this.title = this.pincode._id ? 'Edit Zipcode' : 'Create Zipcode';
     this.buttonText = this.pincode._id ? 'Update' : 'Create';
   }
 
   angForm: FormGroup;
   createForm() {
     this.angForm = this.fb.group({
-      pincode: ['', [Validators.required]],
+      pincode: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
       city: ['', [Validators.required]],
     });
   }

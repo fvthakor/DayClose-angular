@@ -53,7 +53,7 @@
                      Type
                 </label>
                 <div>
-                    <select class="form-control" id="type" name="type" formControlName="type" >
+                    <select class="form-control" id="type" name="type" formControlName="type" (change)="changeCategory()">
                         <option value="">Select Category</option>
                         <option value="banner">Banner</option>
                         <option value="text">Text</option>

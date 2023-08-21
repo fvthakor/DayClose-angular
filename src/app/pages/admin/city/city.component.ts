@@ -78,7 +78,7 @@ export class CityComponent implements OnInit {
   }
 
   getCountyName(city: City) {
-    return typeof city.county !== 'string' ? city.county.name : city.county;
+    return typeof city.county !== 'string' ? city.county?.name : city.county;
   }
 
 }

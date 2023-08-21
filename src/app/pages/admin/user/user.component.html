@@ -62,29 +62,29 @@
                     <tr
                         *ngFor="let store of stores | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 {{store.firstName}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                            <span class="text-dark fw-bolder  d-block mb-1 fs-6">
                                 {{store.lastName}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                            <span class="text-dark fw-bolder  d-block mb-1 fs-6">
                                 {{store.email}}
                             </span>
                             <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: PH</span> -->
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                            <span class="text-dark fw-bolder  d-block mb-1 fs-6">
                                 {{store.address}}
                             </span>
                             <!-- <span class="text-muted fw-bold text-muted d-block fs-7">Code: Paid</span> -->
                         </td>
                         <!-- <td>
-                            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                            <span class="text-dark fw-bolder  d-block mb-1 fs-6">
                                 {{store.city}}
                             </span>
                         </td> -->

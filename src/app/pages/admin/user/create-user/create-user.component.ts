@@ -85,7 +85,7 @@ export class CreateUserComponent implements OnInit {
         middleName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
         lastName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
         userName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
-        phoneNumber: ['', Validators.compose([Validators.required]),],
+        phoneNumber: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]\d*$/)]),],
         email: ['', Validators.compose([Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(320),]),],
         address: ['', Validators.compose([Validators.required]),],
         county: ['', Validators.compose([Validators.required]),],

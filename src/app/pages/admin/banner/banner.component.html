@@ -65,30 +65,30 @@
                     <tr
                         *ngFor="let banner of banners | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 {{banner.title}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{banner.text}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 <img *ngIf="banner.banner" [src]="banner.banner" height="50" style="margin: 5px;" />
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{banner.type}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{banner.link}}
                             </span>

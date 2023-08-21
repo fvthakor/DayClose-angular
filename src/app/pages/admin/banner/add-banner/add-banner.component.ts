@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Banner } from 'src/app/models';
@@ -21,6 +21,7 @@ export class AddBannerComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private bannerService: BannerService,
+    private changeDetectorRef: ChangeDetectorRef,
     //private categoryService: CategoryService,
     //private userService: UserService
   ) { }
@@ -42,6 +43,24 @@ export class AddBannerComponent implements OnInit {
       type: ['banner', [Validators.required]],
       link: [''],
     });
+  }
+
+  // LinkForm() {
+  //   this.angForm = this.fb.group({
+  //     title: [this.angForm.value.title, [Validators.required]],
+  //     text: [this.angForm.value.text, [Validators.required]],
+  //     banner: [this.angForm.value.banner,[Validators.required]],
+  //     type: [this.angForm.value.type, [Validators.required]],
+  //     link: [this.angForm.value.link, this.angForm.value.type === 'link' ? [Validators.required] : []],
+  //   });
+  //   this.changeDetectorRef.detectChanges();
+  // }
+
+  changeCategory(){
+    // setTimeout(() => {
+    //   this.LinkForm();
+    // },1000)
+   
   }
 
   submitForm() {

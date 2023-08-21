@@ -73,47 +73,47 @@
                     <tr
                         *ngFor="let task of tasks | paginate: { id: 'server', itemsPerPage: limit, currentPage: page, totalItems: total } ;let i=index;">
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 {{getCategoryName(task)}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{getsubCategoryName(task)}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 {{task.status}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{task.detail}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{getDate(task.taskDate)}} {{getTime(task.taskTime)}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{task.priority}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 {{getEmployeeName(task)}}
                             </span>
                         </td>
                         <td>
-                            <span class="text-dark fw-bolder text-hover-primary fs-6">
+                            <span class="text-dark fw-bolder  fs-6">
                                 <!-- {{getCategoryName(category)}} -->
                                 <img *ngIf="task.image1" [src]="task.image1" height="50" style="margin: 5px;" />
                                 <img *ngIf="task.image2" [src]="task.image2" height="50" style="margin: 5px;" />
