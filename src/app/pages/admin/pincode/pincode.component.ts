@@ -59,7 +59,7 @@ export class PincodeComponent implements OnInit {
   }
 
   getCityName(pincode: Pincode) {
-    return typeof pincode.city !== 'string' ? pincode.city.name : pincode.city;
+    return typeof pincode.city !== 'string' ? pincode.city?.name : pincode.city;
   }
 
   delete(id: string) {
