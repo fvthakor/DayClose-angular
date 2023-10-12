@@ -50,13 +50,23 @@ export class CreateUserComponent implements OnInit {
   
   skills: Skill[] = [];
   stores: Store[] = [];
+
+  buttonText = 'Create';
   ngOnInit(): void {
-    this.initForm();
     this.getCounties();
     this.getDocumentType();
     this.getSkills();
     this.getStores();
     this.user$ = this.auth.currentUserSubject.asObservable();
+
+    
+    this.buttonText = this.user._id ? 'Update' : 'Create';
+    if(this.user._id){
+      this.initForm2();
+    }else{
+      this.initForm();
+    }
+    this.registrationForm.patchValue(this.user);
   }
 
   getCity(user:any){
@@ -112,6 +122,40 @@ export class CreateUserComponent implements OnInit {
     );
   }
 
+  initForm2() {
+    this.registrationForm = this.fb.group(
+      {
+        //role: ['', Validators.compose([Validators.required])],
+        emplyeeId: ['', Validators.compose([Validators.required])],
+        firstName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
+        middleName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
+        lastName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
+        userName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100),]),],
+        phoneNumber: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]\d*$/)]),],
+        email: ['', Validators.compose([Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(320),]),],
+        address: ['', Validators.compose([Validators.required]),],
+        county: ['', Validators.compose([Validators.required]),],
+        city: ['', Validators.compose([Validators.required]),],
+        pincode: ['', Validators.compose([Validators.required]),],
+        documentType: ['', Validators.compose([Validators.required]),],
+        documentNumber: ['', Validators.compose([Validators.required]),],
+        documentFront: ['', Validators.compose([Validators.required]),],
+        documentBack: ['', Validators.compose([Validators.required]),],
+        skill: ['', Validators.compose([Validators.required]),],
+        store: ['', Validators.compose([Validators.required]),],
+        remark1: [''],
+        remark2: [''],
+        employeePhoto: ['', Validators.compose([Validators.required])],
+        document1: [''],
+        document2: [''],
+        agree: [true, Validators.compose([Validators.required])],
+      },
+      {
+        validator: ConfirmPasswordValidator.MatchPassword,
+      }
+    );
+  }
+
   getStores() {
     this.storeService.getAllData().subscribe(response => {
       this.stores = response;
@@ -148,6 +192,9 @@ export class CreateUserComponent implements OnInit {
       this.cities = response;
       this.changeDetectorRef.detectChanges();
       // console.log(this.cities);
+      if(this.user._id){
+        this.cityChanged();
+      }
     })
   }
   pincodes: Pincode[] = []
@@ -177,10 +224,16 @@ export class CreateUserComponent implements OnInit {
       }
       result[key] = this.f[key].value
     });
+    if(this.user._id){
+      this.userService.authUpdate(this.user._id, this.formData).subscribe(response => {
+        this.activeModal.close('form submit');
+      })
+    }else{
+      this.userService.register(this.formData).subscribe(response => {
+        this.activeModal.close('form submit');
+      })
+    }
     
-    this.userService.register(this.formData).subscribe(response => {
-      this.activeModal.close('form submit');
-    })
     // const newUser = new UserModel();
     // newUser.setUser(result);
     // const registrationSubscr = this.authService

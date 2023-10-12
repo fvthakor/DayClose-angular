@@ -35,6 +35,16 @@ export class UserService {
     }));
   }
 
+  authUpdate(id:string, data:FormData){
+    return this.http.post<{ data: User }>(`${environment.apiUrl}/auth/update/${id}`, data, {
+      withCredentials: true
+    }).pipe(map(response => {
+      return response.data;
+    }));
+  }
+
+  
+
   getAll(page: number, limit: number, query: string): Observable<UserPagination> {
     return this.http.get<UserPagination>(`${environment.apiUrl}/${this.route}?page=${page}&limit=${limit}&query=${query}`, { withCredentials: true })
   }

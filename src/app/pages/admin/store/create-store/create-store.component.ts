@@ -73,6 +73,9 @@ export class CreateStoreComponent implements OnInit {
       this.cities = response;
       this.changeDetectorRef.detectChanges();
       // console.log(this.cities);
+      if(this.angForm.value.county && this.angForm.value.county !== ''){
+        this.cityChanged();
+      }
     })
   }
 

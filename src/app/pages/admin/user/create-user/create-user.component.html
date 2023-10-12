@@ -308,7 +308,7 @@
   <!--end::Form group-->
 
   <!--begin::Form group-->
-  <div class="col-md-4 mb-10 fv-row">
+  <div class="col-md-4 mb-10 fv-row" *ngIf="!this.user._id">
     <label class="form-label fw-bolder text-dark fs-6">Password</label>
     <input class="form-control form-control-lg form-control-solid" type="password" placeholder="Password"
       name="password" formControlName="password" autocomplete="off" [ngClass]="{
@@ -334,7 +334,7 @@
   <!--end::Form group-->
 
   <!--begin::Form group-->
-  <div class="col-md-4 fv-row mb-5">
+  <div class="col-md-4 fv-row mb-5" *ngIf="!this.user._id">
     <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
     <input class="form-control form-control-lg form-control-solid" type="password" placeholder="Confirm password"
       name="cPassword" autocomplete="off" formControlName="cPassword" [ngClass]="{
@@ -534,7 +534,7 @@
       registrationForm.invalid 
     " class="btn btn-lg btn-primary w-100 mb-5">
         <ng-container *ngIf="(isLoading$ | async) === false">
-          <span class="indicator-label">Create</span>
+          <span class="indicator-label">{{buttonText}}</span>
         </ng-container>
         <ng-container *ngIf="isLoading$ | async">
           <span class="indicator-progress" [style.display]="'block'">

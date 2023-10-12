@@ -30,8 +30,10 @@ export class StoreComponent implements OnInit {
   }
 
   open(store: Store) {
+    console.log('store',store);
+    const newStore = {...store, city: typeof store.city === 'string' ? store.city : store.city._id, county:  typeof store.county === 'string' ? store.county : store.county._id, pincode: typeof store.pincode === 'string' ? store.pincode : store.pincode._id }
     const modelRef = this.modalService.open(CreateStoreComponent, { size: 'xl' });
-    modelRef.componentInstance.store = store;
+    modelRef.componentInstance.store = newStore;
     modelRef.result.then(
       (result) => {
         if (result === 'form submit') {

@@ -17,9 +17,10 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401 || err.status === 403) {
         localStorage.removeItem(this.authLocalStorageToken);
-        this.router.navigate(['/auth/login'], {
-          queryParams: {},
-        });
+        // this.router.navigate(['/auth/login'], {
+        //   queryParams: {},
+        // });
+        location.reload();
        
       } else if (err.status === 400 || err.status === 500) {
         const error2 = err.error.message || err.statusText;

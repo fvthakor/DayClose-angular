@@ -30,6 +30,7 @@ export class UserComponent implements OnInit {
   }
 
   open(store: any) {
+    console.log('user',store);
     const modelRef = this.modalService.open(CreateUserComponent, { size: 'xl' });
     modelRef.componentInstance.user = store;
     modelRef.result.then(

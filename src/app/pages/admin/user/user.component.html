@@ -32,7 +32,7 @@
             <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
         </h3>
         <div class="card-toolbar">
-            <button class="btn btn-primary btn-sm" (click)="open({})">Crate</button>
+            <button class="btn btn-primary btn-sm" (click)="open({})">Create</button>
         </div>
     </div>
     <!-- end::Header -->
@@ -90,10 +90,10 @@
                         </td> -->
                         
                         <td class="text-end">
-                            <!-- <button (click)="open(store)" class="btn btn-icon btn-light-primary btn-sm me-1">
+                            <button (click)="open(store)" class="btn btn-icon btn-light-primary btn-sm me-1">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
                                     class="svg-icon svg-icon-3"></span>
-                            </button> -->
+                            </button>
                             <button (click)="delete(store._id ? store._id : '')"
                                 class="btn btn-icon btn-light-danger btn-sm">
                                 <span [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
