@@ -33,6 +33,7 @@ export class AddBannerComponent implements OnInit {
     this.title = this.banner._id ? 'Edit Banner' : 'Create Banner';
     this.buttonText = this.banner._id ? 'Update' : 'Create';
   }
+  bannerImage :any = null
   isFormSubmitted = false;
   angForm: FormGroup;
   createForm() {
@@ -45,21 +46,7 @@ export class AddBannerComponent implements OnInit {
     });
   }
 
-  // LinkForm() {
-  //   this.angForm = this.fb.group({
-  //     title: [this.angForm.value.title, [Validators.required]],
-  //     text: [this.angForm.value.text, [Validators.required]],
-  //     banner: [this.angForm.value.banner,[Validators.required]],
-  //     type: [this.angForm.value.type, [Validators.required]],
-  //     link: [this.angForm.value.link, this.angForm.value.type === 'link' ? [Validators.required] : []],
-  //   });
-  //   this.changeDetectorRef.detectChanges();
-  // }
-
   changeCategory(){
-    // setTimeout(() => {
-    //   this.LinkForm();
-    // },1000)
    
   }
 
@@ -101,8 +88,16 @@ export class AddBannerComponent implements OnInit {
     if (!input.files?.length) {
       return;
     }
+
     const file: File = input.files[0];
+    try{
+      this.formData.delete(type);
+    }catch(error){
+
+    }
     this.formData.append(`${type}`, file);
+    
+    //this.bannerImage = file;
   }
 
 }

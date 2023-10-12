@@ -57,7 +57,7 @@
                     Date
                 </label>
                 <div>
-                    <input type="date" value="angForm.value.taskDate" class="form-control" name="taskDate" formControlName="taskDate"
+                    <input type="date" value="angForm.value.taskDate" class="form-control picker" name="taskDate" formControlName="taskDate"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.taskDate.errors}" id="taskDate">
                     <div *ngIf="isFormSubmitted && form.taskDate.errors?.required" class="invalid-feedback">
                         Date is required.
@@ -69,7 +69,7 @@
                     Time
                 </label>
                 <div>
-                    <input type="time" value="angForm.value.taskDate" class="form-control" name="taskTime" formControlName="taskTime"
+                    <input type="time" value="angForm.value.taskDate" class="form-control picker" name="taskTime" formControlName="taskTime"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.taskTime.errors}" id="taskTime">
                     <div *ngIf="isFormSubmitted && form.taskTime.errors?.required" class="invalid-feedback">
                         Time is required.
@@ -116,9 +116,14 @@
                 <div>
                     <input type="file" class="form-control"  accept="image/png, image/jpeg" name="image1" formControlName="image1"
                         [ngClass]="{'is-invalid': isFormSubmitted && form.image1.errors}" id="image1" (change)="onFileSelected($event, 'image1')">
-                    <div *ngIf="isFormSubmitted && form.image1.errors?.required" class="invalid-feedback">
+                   
+                       
+                        <div *ngIf="isFormSubmitted && form.image1.errors?.required" class="invalid-feedback">
                         Image 1 is required.
                     </div>
+                    <span class="mt-1" *ngIf="task._id">
+                        <img width="50" [src]="task.image1"/>
+                      </span>
                 </div>
             </div>
             <div class="col-md-6 mb-3 form-group">
@@ -131,6 +136,10 @@
                     <div *ngIf="isFormSubmitted && form.image2.errors?.required" class="invalid-feedback">
                         Image2 is required.
                     </div>
+
+                    <span class="mt-1" *ngIf="task._id">
+                        <img width="50" [src]="task.image1"/>
+                      </span>
                 </div>
             </div>
         </div>

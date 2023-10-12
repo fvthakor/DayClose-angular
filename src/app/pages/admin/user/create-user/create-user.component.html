@@ -414,6 +414,9 @@
         'is-invalid': registrationForm.controls['documentFront'].invalid,
         'is-valid': registrationForm.controls['documentFront'].valid
       }" (change)="onFileSelected($event, 'documentFront')" />
+      <span *ngIf="user._id">
+        <img width="50" [src]="user.documentFront" />
+      </span>
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'required',
         message: 'Document Front Image is required',
@@ -430,6 +433,9 @@
         'is-invalid': registrationForm.controls['documentBack'].invalid,
         'is-valid': registrationForm.controls['documentBack'].valid
       }" (change)="onFileSelected($event, 'documentBack')" />
+      <span *ngIf="user._id">
+        <img width="50" [src]="user.documentBack"/>
+      </span>
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'required',
         message: 'Document Back Image is required',
@@ -499,6 +505,10 @@
         'is-invalid': registrationForm.controls['employeePhoto'].invalid,
         'is-valid': registrationForm.controls['employeePhoto'].valid
       }" (change)="onFileSelected($event, 'employeePhoto')" />
+
+      <span *ngIf="user._id">
+        <img width="50" [src]="user.employeePhoto"/>
+      </span>
 
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'required',

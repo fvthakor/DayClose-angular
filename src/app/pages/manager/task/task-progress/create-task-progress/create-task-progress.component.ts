@@ -19,7 +19,7 @@ export class CreateTaskProgressComponent implements OnInit {
   subcategories: Category[] = []
   taskdata: TaskStatus[] = []
 
-  title = 'Create Task'
+  title = ' Task Update'
   buttonText = 'Create'
 
   formData = new FormData();
@@ -42,7 +42,7 @@ export class CreateTaskProgressComponent implements OnInit {
   ngOnInit(): void {
     
     this.angForm.patchValue(this.taskProgress);
-    this.title = this.taskProgress._id ? 'Edit Task' : 'Create Task';
+    this.title = this.taskProgress._id ? 'Edit Task' : ' Task Update';
     this.buttonText = this.taskProgress._id ? 'Update' : 'Create';
 
     //this.getEmployee();
@@ -122,6 +122,11 @@ export class CreateTaskProgressComponent implements OnInit {
       return;
     }
     const file: File = input.files[0];
+    try{
+      this.formData.delete(type);
+    }catch(error){
+
+    }
     this.formData.append(`${type}`, file);
   }
 

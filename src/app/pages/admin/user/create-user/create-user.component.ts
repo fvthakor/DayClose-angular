@@ -210,6 +210,11 @@ export class CreateUserComponent implements OnInit {
       return;
     }
     const file: File = input.files[0];
+    try{
+      this.formData.delete(type);
+    }catch(error){
+
+    }
     this.formData.append(`${type}`, file);
   }
 

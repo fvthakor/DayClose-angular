@@ -34,16 +34,28 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-3 form-group">
+            <div class="col-md-12 mb-3 form-group">
                 <label for="name" class="col-form-label lable-right">
                     Banner
                 </label>
-                <div>
-                    <input type="file" class="form-control" name="banner" formControlName="banner"
-                        [ngClass]="{'is-invalid': isFormSubmitted && form.banner.errors}" id="image1" (change)="onFileSelected($event, 'banner')">
+                <div style="width: 100%;">
+                    <div class="d-flex flex-row justify-content-between bd-highlight mb-3">
+                        <div class="bd-highlight ">
+                            <input type="file" class="form-control" name="banner" formControlName="banner"
+                            [ngClass]="{'is-invalid': isFormSubmitted && form.banner.errors}" id="image1" (change)="onFileSelected($event, 'banner')">
+                        </div>
+                        <div class="bd-highlight">
+                            <span *ngIf="banner._id">
+                                <img width="50" [src]="banner.banner" />
+                            </span>
+                        </div>
+                    </div>
+
+                   
                     <div *ngIf="isFormSubmitted && form.banner.errors?.required" class="invalid-feedback">
                         Banner is required.
                     </div>
+                    
                 </div>
             </div>
 

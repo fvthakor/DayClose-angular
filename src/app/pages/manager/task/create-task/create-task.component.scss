@@ -1,0 +1,29 @@
+input.picker[type="date"] {
+    position: relative;
+  }
+  
+  input.picker[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color: transparent;
+    background: transparent;
+  }
+
+  input.picker[type="time"] {
+    position: relative;
+  }
+  
+  input.picker[type="time"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color: transparent;
+    background: transparent;
+  }

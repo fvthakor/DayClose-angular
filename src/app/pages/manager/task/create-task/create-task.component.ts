@@ -106,6 +106,11 @@ export class CreateTaskComponent implements OnInit {
     if (!input.files?.length) {
       return;
     }
+    try{
+      this.formData.delete(type);
+    }catch(error){
+
+    }
     const file: File = input.files[0];
     this.formData.append(`${type}`, file);
   }
